@@ -112,8 +112,9 @@ Decisões tomadas ao construir, e o porquê.
 - **Faixas da conta:** abaixo de R$ 450 · R$ 450 a R$ 700 · R$ 700 a R$ 1.000 · acima de R$ 1.000. Só o corte de R$ 450 vem do brief; os outros limites organizam a escolha e estão marcados assim no `checar-numeros`.
 - **Hover do botão clareia:** a versão escura do âmbar reprovou no contraste (4,2:1), então o hover usa âmbar mais claro.
 - **Sem botão fixo extra no celular:** o topo já é fixo com "Pedir simulação", o que cumpre "uma rolagem até a conversão".
-- **Sem mapa:** a spec manda "quem atendemos" em lista; o mapa fica fora do fluxo único.
+- **Mapa só esquemático:** "quem atendemos" segue em lista (é o que o leitor de tela lê); o mapa que entrou é um desenho com nomes e "80 km", sem rota nem link, fora do fluxo único.
 - **"85%" no caso real:** derivado de 1 − 118/780, rotulado como "neste caso" e acompanhado de "é um caso, não uma média".
+- **Ilustrações próprias (hero, telha com selo, esquema da Lei 14.300, mapa de atendimento):** sem fotos, o visual sai do logo (sol de 5 raios, trapézio com grade); SVG inline, só tokens de cor, sem animação, sem texto além do que o brief diz. Detalhe em DESIGN.md.
 - **Política de privacidade:** guarda de 12 meses é proposta minha, a confirmar (ver `FALTA.md`).
 
 ### Bugs que a verificação pegou

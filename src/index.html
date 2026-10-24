@@ -18,6 +18,28 @@
 <!--CSS-->
 </head>
 <body>
+<svg class="il il-defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="il-sol" viewBox="0 0 100 100">
+      <circle class="il-ambar" cx="50" cy="52" r="20"/>
+      <path d="M50 26 V17 M68.4 33.6 L74.8 27.2 M31.6 33.6 L25.2 27.2 M76 52 H85 M24 52 H15"/>
+    </symbol>
+    <symbol id="il-casa" viewBox="0 0 100 100">
+      <rect class="il-branco" x="20" y="50" width="60" height="38"/>
+      <path class="il-azul" d="M8 52 L50 16 L92 52 Z"/>
+      <rect class="il-ambar" x="44" y="64" width="14" height="24"/>
+    </symbol>
+    <symbol id="il-casa-noite" viewBox="0 0 100 100">
+      <use href="#il-casa"/>
+      <path class="il-ambar" d="M82 6 A13 13 0 1 0 94 28 A10 10 0 0 1 82 6 Z"/>
+    </symbol>
+    <symbol id="il-rede" viewBox="0 0 100 100">
+      <path d="M50 10 L28 90 M50 10 L72 90 M32 34 H68 M38 56 H62 M44 34 L60 56 M56 34 L40 56 M20 90 H80"/>
+      <circle class="il-ambar" cx="32" cy="42" r="5"/>
+      <circle class="il-ambar" cx="68" cy="42" r="5"/>
+    </symbol>
+  </defs>
+</svg>
 <a class="pular" href="#pedido">Ir para o pedido de simulação</a>
 
 <header class="topo">
@@ -38,6 +60,18 @@
         <p class="corte"><strong>Para casas com conta de luz acima de <span class="num">R$&nbsp;450</span> por mês.</strong> Abaixo disso a conta não fecha, e nós mesmos desaconselhamos.</p>
       </div>
 
+      <div class="hero-lado">
+      <svg class="il il-hero" viewBox="0 0 480 300" aria-hidden="true" focusable="false">
+        <use href="#il-sol" x="320" y="40" width="100" height="100"/>
+        <path d="M24 270 H456"/>
+        <rect class="il-branco" x="100" y="170" width="240" height="100"/>
+        <path class="il-claro" d="M80 175 L220 70 L360 175 Z"/>
+        <path class="il-azul" d="M116 160 L180 112 L260 112 L324 160 Z"/>
+        <path class="il-tr-branco" d="M200 112 L168 160 M220 112 V160 M240 112 L272 160 M148 136 H292"/>
+        <rect class="il-ambar" x="125" y="196" width="50" height="40"/>
+        <path d="M150 196 V236 M125 216 H175"/>
+        <rect class="il-azul" x="255" y="205" width="40" height="65"/>
+      </svg>
       <div class="sim" id="simulador">
         <h2>Quanto você paga de luz por mês?</h2>
         <label for="sim-valor">Valor médio da sua conta</label>
@@ -50,6 +84,7 @@
         </div>
         <a class="botao botao--cheio" id="sim-continuar" href="#pedido" hidden>Pedir simulação com essa conta</a>
         <noscript><p class="nota-form">Sem JavaScript o cálculo não aparece, mas o pedido de simulação funciona normalmente <a href="#pedido">no formulário abaixo</a>.</p></noscript>
+      </div>
       </div>
     </div>
   </section>
@@ -103,6 +138,44 @@
       <p class="rotulo">“Taxaram o sol”</p>
       <h2 id="titulo-lei">Vale. Mas o cálculo mudou.</h2>
       <p class="intro">Desde a Lei <span class="num">14.300</span> existe uma cobrança sobre a energia que o seu sistema injeta na rede. Ela aumenta ano a ano. Não vamos esconder isso, e é por isso que a nossa proposta explica a conta.</p>
+      <svg class="il il-lei il-lei--h" viewBox="0 0 960 250" role="img" aria-label="Esquema em quatro etapas: o sol produz de dia, a casa consome de dia, a energia injetada na rede vira crédito, e à noite o crédito abate o consumo da casa."><title>Esquema em quatro etapas: o sol produz de dia, a casa consome de dia, a energia injetada na rede vira crédito, e à noite o crédito abate o consumo da casa.</title>
+        <use href="#il-sol" x="70" y="20" width="100" height="100"/>
+        <text x="120" y="164" text-anchor="middle">Sol</text>
+        <text class="il-sub" x="120" y="194" text-anchor="middle">Produz de dia</text>
+        <path d="M190 70 H288 M274 58 L288 70 L274 82"/>
+        <use href="#il-casa" x="310" y="20" width="100" height="100"/>
+        <text x="360" y="164" text-anchor="middle">Casa de dia</text>
+        <text class="il-sub" x="360" y="194" text-anchor="middle">Consumo de dia</text>
+        <path d="M430 70 H528 M514 58 L528 70 L514 82"/>
+        <use href="#il-rede" x="550" y="20" width="100" height="100"/>
+        <text x="600" y="164" text-anchor="middle">Rede</text>
+        <text class="il-sub" x="600" y="194" text-anchor="middle">Energia injetada</text>
+        <text class="il-sub" x="600" y="222" text-anchor="middle">vira crédito</text>
+        <path d="M670 70 H768 M754 58 L768 70 L754 82"/>
+        <use href="#il-casa-noite" x="790" y="20" width="100" height="100"/>
+        <text x="840" y="164" text-anchor="middle">Casa à noite</text>
+        <text class="il-sub" x="840" y="194" text-anchor="middle">Crédito abate</text>
+        <text class="il-sub" x="840" y="222" text-anchor="middle">o consumo</text>
+      </svg>
+      <svg class="il il-lei il-lei--v" viewBox="0 0 360 500" role="img" aria-label="Esquema em quatro etapas: o sol produz de dia, a casa consome de dia, a energia injetada na rede vira crédito, e à noite o crédito abate o consumo da casa."><title>Esquema em quatro etapas: o sol produz de dia, a casa consome de dia, a energia injetada na rede vira crédito, e à noite o crédito abate o consumo da casa.</title>
+        <use href="#il-sol" x="20" y="10" width="80" height="80"/>
+        <text x="124" y="46">Sol</text>
+        <text class="il-sub" x="124" y="74">Produz de dia</text>
+        <path d="M60 104 V126 M50 116 L60 126 L70 116"/>
+        <use href="#il-casa" x="20" y="140" width="80" height="80"/>
+        <text x="124" y="176">Casa de dia</text>
+        <text class="il-sub" x="124" y="204">Consumo de dia</text>
+        <path d="M60 234 V256 M50 246 L60 256 L70 246"/>
+        <use href="#il-rede" x="20" y="270" width="80" height="80"/>
+        <text x="124" y="306">Rede</text>
+        <text class="il-sub" x="124" y="334">Energia injetada</text>
+        <text class="il-sub" x="124" y="360">vira crédito</text>
+        <path d="M60 364 V386 M50 376 L60 386 L70 376"/>
+        <use href="#il-casa-noite" x="20" y="400" width="80" height="80"/>
+        <text x="124" y="436">Casa à noite</text>
+        <text class="il-sub" x="124" y="464">Crédito abate</text>
+        <text class="il-sub" x="124" y="490">o consumo</text>
+      </svg>
       <div class="cartoes cartoes--3">
         <div class="cartao">
           <h3>O que mudou</h3>
@@ -126,8 +199,67 @@
       <p class="rotulo">Telhado e garantias</p>
       <h2 id="titulo-garantias">E se chover?</h2>
       <p class="intro">O medo de infiltração é o segundo que mais ouvimos, principalmente em telha de barro. A instalação leva <span class="num">2 dias</span>, feita pela nossa equipe, e a garantia da instalação cobre o que a obra causar.</p>
-      <div class="chuva">
-        <div class="grande num">5 anos</div>
+      <div class="chuva chuva--il">
+        <svg class="il il-telha" viewBox="0 0 400 264" aria-hidden="true" focusable="false">
+          <rect class="il-branco" x="2" y="2" width="396" height="260" rx="12"/>
+      <rect class="il-fundo" x="26" y="22" width="58" height="55"/>
+      <rect class="il-fundo" x="84" y="22" width="58" height="55"/>
+      <rect class="il-fundo" x="142" y="22" width="58" height="55"/>
+      <rect class="il-fundo" x="200" y="22" width="58" height="55"/>
+      <rect class="il-fundo" x="258" y="22" width="58" height="55"/>
+      <rect class="il-fundo" x="316" y="22" width="58" height="55"/>
+      <path class="il-laranja" d="M15 22 L37 22 L42 77 L10 77 Z"/>
+      <path class="il-laranja" d="M73 22 L95 22 L100 77 L68 77 Z"/>
+      <path class="il-laranja" d="M131 22 L153 22 L158 77 L126 77 Z"/>
+      <path class="il-laranja" d="M189 22 L211 22 L216 77 L184 77 Z"/>
+      <path class="il-laranja" d="M247 22 L269 22 L274 77 L242 77 Z"/>
+      <path class="il-laranja" d="M305 22 L327 22 L332 77 L300 77 Z"/>
+      <path class="il-laranja" d="M363 22 L385 22 L390 77 L358 77 Z"/>
+      <rect class="il-fundo" x="26" y="77" width="58" height="55"/>
+      <rect class="il-fundo" x="84" y="77" width="58" height="55"/>
+      <rect class="il-fundo" x="142" y="77" width="58" height="55"/>
+      <rect class="il-fundo" x="200" y="77" width="58" height="55"/>
+      <rect class="il-fundo" x="258" y="77" width="58" height="55"/>
+      <rect class="il-fundo" x="316" y="77" width="58" height="55"/>
+      <path class="il-laranja" d="M15 77 L37 77 L42 132 L10 132 Z"/>
+      <path class="il-laranja" d="M73 77 L95 77 L100 132 L68 132 Z"/>
+      <path class="il-laranja" d="M131 77 L153 77 L158 132 L126 132 Z"/>
+      <path class="il-laranja" d="M189 77 L211 77 L216 132 L184 132 Z"/>
+      <path class="il-laranja" d="M247 77 L269 77 L274 132 L242 132 Z"/>
+      <path class="il-laranja" d="M305 77 L327 77 L332 132 L300 132 Z"/>
+      <path class="il-laranja" d="M363 77 L385 77 L390 132 L358 132 Z"/>
+      <rect class="il-fundo" x="26" y="132" width="58" height="55"/>
+      <rect class="il-fundo" x="84" y="132" width="58" height="55"/>
+      <rect class="il-fundo" x="142" y="132" width="58" height="55"/>
+      <rect class="il-fundo" x="200" y="132" width="58" height="55"/>
+      <rect class="il-fundo" x="258" y="132" width="58" height="55"/>
+      <rect class="il-fundo" x="316" y="132" width="58" height="55"/>
+      <path class="il-laranja" d="M15 132 L37 132 L42 187 L10 187 Z"/>
+      <path class="il-laranja" d="M73 132 L95 132 L100 187 L68 187 Z"/>
+      <path class="il-laranja" d="M131 132 L153 132 L158 187 L126 187 Z"/>
+      <path class="il-laranja" d="M189 132 L211 132 L216 187 L184 187 Z"/>
+      <path class="il-laranja" d="M247 132 L269 132 L274 187 L242 187 Z"/>
+      <path class="il-laranja" d="M305 132 L327 132 L332 187 L300 187 Z"/>
+      <path class="il-laranja" d="M363 132 L385 132 L390 187 L358 187 Z"/>
+      <rect class="il-fundo" x="26" y="187" width="58" height="55"/>
+      <rect class="il-fundo" x="84" y="187" width="58" height="55"/>
+      <rect class="il-fundo" x="142" y="187" width="58" height="55"/>
+      <rect class="il-fundo" x="200" y="187" width="58" height="55"/>
+      <rect class="il-fundo" x="258" y="187" width="58" height="55"/>
+      <rect class="il-fundo" x="316" y="187" width="58" height="55"/>
+      <path class="il-laranja" d="M15 187 L37 187 L42 242 L10 242 Z"/>
+      <path class="il-laranja" d="M73 187 L95 187 L100 242 L68 242 Z"/>
+      <path class="il-laranja" d="M131 187 L153 187 L158 242 L126 242 Z"/>
+      <path class="il-laranja" d="M189 187 L211 187 L216 242 L184 242 Z"/>
+      <path class="il-laranja" d="M247 187 L269 187 L274 242 L242 242 Z"/>
+      <path class="il-laranja" d="M305 187 L327 187 L332 242 L300 242 Z"/>
+      <path class="il-laranja" d="M363 187 L385 187 L390 242 L358 242 Z"/>
+          <circle class="il-azul" cx="200" cy="132" r="80"/>
+          <circle class="il-tr-ambar" cx="200" cy="132" r="70"/>
+          <text class="il-txt-branco il-t-gr" x="200" y="136" text-anchor="middle"><tspan class="il-txt-ambar il-t-xg">5</tspan> anos</text>
+          <text class="il-txt-branco il-sub" x="200" y="168" text-anchor="middle">instalação</text>
+        </svg>
+        <div class="grande num so-leitor">5 anos</div>
         <div>
           <h3>Garantia da nossa instalação</h3>
           <p>Inclui qualquer infiltração causada pela obra.</p>
@@ -218,10 +350,27 @@
     <div class="cx">
       <p class="rotulo">Pedir simulação</p>
       <h2 id="titulo-pedido">Resposta no mesmo dia útil, por WhatsApp.</h2>
-      <p class="intro">A visita técnica ao telhado é gratuita e sem compromisso. Atendemos casas num raio de <span class="num">80 km</span> de Sorocaba:</p>
-      <ul class="cidades" aria-label="Cidades atendidas">
-        <li>Sorocaba</li><li>Votorantim</li><li>Itu</li><li>Salto</li>
-      </ul>
+      <div class="pedido-topo">
+        <div>
+          <p class="intro">A visita técnica ao telhado é gratuita e sem compromisso. Atendemos casas num raio de <span class="num">80 km</span> de Sorocaba:</p>
+          <ul class="cidades" aria-label="Cidades atendidas">
+            <li>Sorocaba</li><li>Votorantim</li><li>Itu</li><li>Salto</li>
+          </ul>
+        </div>
+        <svg class="il il-mapa" viewBox="0 0 560 400" role="img" aria-label="Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu."><title>Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu.</title>
+          <circle class="il-fundo il-tracejado" cx="280" cy="200" r="170"/>
+          <path d="M280 200 H110"/>
+          <text class="il-sub" x="195" y="186" text-anchor="middle">raio de 80 km</text>
+          <circle class="il-branco" cx="335" cy="142" r="8"/>
+          <text x="319" y="150" text-anchor="end">Itu</text>
+          <circle class="il-branco" cx="358" cy="104" r="8"/>
+          <text x="342" y="112" text-anchor="end">Salto</text>
+          <circle class="il-branco" cx="286" cy="228" r="8"/>
+          <text x="270" y="236" text-anchor="end">Votorantim</text>
+          <circle class="il-ambar" cx="280" cy="200" r="11"/>
+          <text x="298" y="208">Sorocaba</text>
+        </svg>
+      </div>
       <p class="nao-atendemos"><strong>O que não fazemos:</strong> casa com conta de luz abaixo de <span class="num">R$&nbsp;450</span> por mês, indústria, comércio acima de <span class="num">75 kWp</span>, sistema com bateria e manutenção de sistema instalado por outra empresa.</p>
 
       <div class="form-caixa">

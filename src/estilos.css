@@ -204,6 +204,43 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .texto ul { list-style: disc; padding-left: 22px; }
 .texto .botao { margin-top: 28px; }
 
+/* ---------- Ilustrações (derivadas do logo: sol de 5 raios, casa/painel em trapézio com grade) ---------- */
+.il {
+  --traco: 3px;
+  display: block; width: 100%; height: auto;
+  fill: none; stroke: var(--azul); stroke-width: var(--traco);
+  stroke-linejoin: round; stroke-linecap: round;
+}
+.il * { vector-effect: non-scaling-stroke; }
+.il-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.il-azul { fill: var(--azul); }
+.il-ambar { fill: var(--ambar); }
+.il-branco { fill: var(--branco); }
+.il-claro { fill: var(--azul-claro); }
+.il-laranja { fill: var(--laranja); }
+.il-fundo { fill: var(--ambar-fundo); }
+.il-tr-branco { stroke: var(--branco); }
+.il-tr-ambar { stroke: var(--ambar); }
+.il-tracejado { stroke-dasharray: 10 8; }
+:where(.il) text { stroke: none; fill: var(--azul); font-size: 28px; font-weight: 700; }
+.il text.il-sub { font-size: 24px; font-weight: 400; }
+.il text.il-txt-branco { fill: var(--branco); }
+.il text.il-txt-ambar, .il tspan.il-txt-ambar { fill: var(--ambar); }
+.il text.il-t-gr { font-size: 32px; }
+.il tspan.il-t-xg { font-size: 56px; }
+
+.hero-lado { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.il-hero { aspect-ratio: 480 / 300; height: 180px; width: auto; margin-inline: auto; }
+.il-lei { margin-top: 32px; }
+.il-lei--h { display: none; aspect-ratio: 960 / 250; }
+.il-lei--v { aspect-ratio: 360 / 500; max-width: 360px; }
+.il-telha { aspect-ratio: 400 / 264; }
+.so-leitor { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.pedido-topo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: center; }
+.il-mapa { aspect-ratio: 560 / 400; max-width: 520px; }
+.il-mapa text { font-size: 24px; }
+.il-mapa text.il-sub { font-size: 22px; }
+
 /* ---------- Telas maiores ---------- */
 @media (min-width: 760px) {
   .cartoes--3 { grid-template-columns: repeat(3, 1fr); }
@@ -213,6 +250,10 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
   .prova li:last-child { border-right: 0; }
   .caso-grade { grid-template-columns: 1.3fr 1fr; align-items: center; gap: 56px; }
   .chuva { grid-template-columns: auto 1fr; align-items: center; gap: 40px; padding: 40px; }
+  .chuva--il { grid-template-columns: minmax(0, 340px) 1fr; }
+  .il-lei--h { display: block; }
+  .il-lei--v { display: none; }
+  .pedido-topo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
   .invest-grade { grid-template-columns: 1fr 1fr; gap: 56px; }
   .form-caixa { padding: 32px; }
   .form-duas { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
@@ -220,7 +261,9 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 }
 @media (min-width: 960px) {
   .hero-grade { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 56px; }
-  .sim { padding: 28px; position: sticky; top: 88px; }
+  .sim { padding: 28px; }
+  .hero-lado { position: sticky; top: 88px; }
+  .il-hero { width: 100%; height: auto; max-height: 240px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

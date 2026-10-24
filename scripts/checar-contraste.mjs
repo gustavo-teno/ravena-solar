@@ -26,6 +26,17 @@ const PARES = [
   ['barra "antes" sobre azul', 'sobre-azul', 'azul', G],
   ['texto sobre azul claro (hover)', 'azul', 'azul-claro', T],
   ['bolinha da lista (âmbar) com borda azul', 'azul', 'papel', G],
+  ['ilustração: traço azul sobre o papel', 'azul', 'papel', G],
+  ['ilustração: traço azul sobre branco (telha, casa, mapa)', 'azul', 'branco', G],
+  ['ilustração: traço azul sobre azul claro (telhado do hero)', 'azul', 'azul-claro', G],
+  ['ilustração: traço azul sobre âmbar (sol, porta)', 'azul', 'ambar', G],
+  ['ilustração: traço azul sobre laranja (telha capa)', 'azul', 'laranja', G],
+  ['ilustração: traço azul sobre âmbar claro (telha canal, mapa)', 'azul', 'ambar-fundo', G],
+  ['ilustração: traço branco da grade sobre o painel azul', 'branco', 'azul', G],
+  ['mapa: nomes das cidades sobre âmbar claro', 'azul', 'ambar-fundo', T],
+  ['esquema da lei: rótulos sobre o papel', 'azul', 'papel', T],
+  ['selo: "5" âmbar sobre azul (texto grande)', 'ambar', 'azul', G],
+  ['selo: texto branco sobre azul', 'branco', 'azul', T],
 ];
 
 let falhas = 0;

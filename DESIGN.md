@@ -46,6 +46,13 @@ Fundo claro (hero, lei, garantias, como funciona, investimento, FAQ, pedido) e *
 - **Garantias:** "E se chover?" em destaque (5 anos), as garantias de fabricante em lista de uma linha.
 - **Passos:** lista numerada com linha vertical; o passo da CPFL leva a etiqueta "Depende da distribuidora, não de nós".
 - **FAQ:** `<details>`, funciona sem JavaScript.
+- **Ilustrações:** quatro desenhos da mesma família, todos SVG inline (nunca `<img>` nem .svg externo, para o `checar-cores` varrer). Traço de `--traco: 3px` (com `vector-effect: non-scaling-stroke`, então são 3 px em qualquer largura), cantos e pontas redondos, sem gradiente, sombra nem animação. Cores só por classe (`.il-azul`, `.il-ambar`, `.il-branco`, `.il-claro`, `.il-laranja`, `.il-fundo`) com os tokens `--azul`, `--ambar`, `--branco`, `--azul-claro`, `--laranja` e `--ambar-fundo`. Símbolos compartilhados (sol, casa, casa à noite, rede) ficam num bloco `<defs>` no topo da página.
+  1. Hero: casa de duas águas com painel em trapézio e grade do logo, e o sol. Decorativa (`aria-hidden`); 180 px de altura no celular, acima do simulador no desktop.
+  2. Garantias: selo "5 anos" sobre telha capa e canal, dentro do bloco azul. Decorativo; o texto "5 anos" continua no HTML.
+  3. Lei 14.300: sol, casa de dia, rede, casa à noite, ligados por setas. Horizontal a partir de 760 px, vertical abaixo. `role="img"` com `<title>` e `aria-label`; rótulos só com o que o brief diz, sem percentual.
+  4. Pedido: mapa esquemático com Sorocaba no centro, círculo "raio de 80 km" e Votorantim, Itu e Salto em posição aproximada, sem distância por cidade. `role="img"`; a lista `ul.cidades` segue no HTML para o leitor de tela.
+
+  Todas têm `viewBox` fixo e `aspect-ratio` no CSS (CLS 0). Os pares de contraste estão em `scripts/checar-contraste.mjs`.
 - **Formulário:** rótulo sempre visível, erro em texto + ícone + cor (nunca só cor), foco visível de 3 px, anexo opcional dito como "ajuda a acelerar".
 
 ## Movimento
@@ -54,4 +61,4 @@ Nenhum obrigatório. Só rolagem suave para âncoras, desligada com `prefers-red
 
 ## Imagens
 
-Só o logo, o ícone derivado dele e a imagem de compartilhamento (`og.png`, gerada com as cores do logo). Não há foto, vídeo nem imagem de banco: as 40 fotos de obra e os 3 depoimentos em vídeo existem, mas não vieram no material. Quando chegarem, entram poucas, com prioridade para telhado de telha de barro (medo de infiltração).
+Não há foto, vídeo nem imagem de banco: as 40 fotos de obra e os 3 depoimentos em vídeo existem, mas não vieram no material, e nada disso vai chegar. Placeholder fingindo ser obra e imagem gerada por IA também ficam fora (SPEC §5). O visual vem do próprio logo: as ilustrações (ver Componentes) reaproveitam o sol de 5 raios e o trapézio com grade, são SVG inline em `src/index.html` e usam só os tokens de cor. Fora delas, só o logo, o ícone derivado dele e a imagem de compartilhamento (`og.png`, gerada com as cores do logo). Se as fotos chegarem, entram poucas, com prioridade para telhado de telha de barro.
