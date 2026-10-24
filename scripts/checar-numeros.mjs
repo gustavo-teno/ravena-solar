@@ -15,6 +15,7 @@ const PERMITIDOS = {
   '450': [{ fonte: brief('"conta de luz acima de R$ 450 por mês"') }],
   '412': [{ fonte: brief('"412 sistemas residenciais"') }],
   '6': [{ fonte: brief('"seis anos"; "6,4 kWp" é outro token') }],
+  '11': [{ fonte: brief('"seis anos, onze pessoas, sede em Sorocaba"') }],
   '4,8': [{ fonte: brief('"Nota 4,8 no Google"') }],
   '137': [{ fonte: brief('"137 avaliações"') }],
   '80': [{ fonte: brief('"num raio de 80 km"') }],

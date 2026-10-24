@@ -41,7 +41,9 @@ Fundo claro (hero, lei, garantias, como funciona, investimento, FAQ, pedido) e *
 
 - **Botão principal:** âmbar, texto azul, borda azul de 2 px, 48 px de altura.
 - **Simulador:** cartão branco com borda azul; campo grande com "R$"; resultado numa região `aria-live`; abaixo de R$ 450 aparece o aviso e o botão some.
-- **Prova rápida:** quatro números em grade, separados por linha.
+- **Prova rápida:** quatro números em grade (412, 6 anos, 4,8, 11 pessoas), mesma altura e tamanho, separados por linha. Sob o 4,8, cinco estrelas em SVG inline (`#il-estrela`): quatro cheias em `--ambar` e a quinta cheia até 80% (`clipPath` fixo, sem JS), com contorno vazio em `--linha`. O grupo é um `role="img"` com `aria-label="Nota 4,8 de 5 no Google"`; sem link nem animação.
+- **Selos:** fileira de quatro itens que fecha "Como funciona", cada um com ícone de traço (mesma família das ilustrações, só tokens) e uma frase curta do brief. É texto com ícone: não imita selo de certificadora, Inmetro nem marca de fabricante. 1 coluna no celular, 2 a partir de 760 px, 4 a partir de 960 px, separados por `1px solid var(--linha)`.
+- **Linha do caso no formulário:** uma frase junto ao botão de envio ("Um caso conferido…") com link para o caso; não repete as barras.
 - **Caso real:** duas barras proporcionais (780 → 118, largura calculada da razão) sobre fundo azul, com a nota "Não é zero" e "É um caso, não uma média".
 - **Garantias:** "E se chover?" em destaque (5 anos), as garantias de fabricante em lista de uma linha.
 - **Passos:** lista numerada com linha vertical; o passo da CPFL leva a etiqueta "Depende da distribuidora, não de nós".

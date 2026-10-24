@@ -28,7 +28,7 @@ As três primeiras têm seção própria, mas também voltam no FAQ: quem pula s
    - **Simulador simples** logo abaixo: um campo "quanto você paga de luz por mês?". Acima de R$ 450, mostra a conta de hoje e a faixa estimada (75% a 90% de queda aplicados ao valor digitado), rotulada "estimativa pela média dos clientes" e nunca chegando a zero, e um botão que leva ao formulário com a conta já preenchida. Abaixo de R$ 450, diz com franqueza que nesse valor a conta não fecha e não mostra o botão.
    - O simulador **não** estima potência, número de painéis, preço nem economia em reais por ano além da faixa: quem dimensiona é a visita técnica.
    - Sem 3D nem animação obrigatória no hero: título, números e simulador estão no HTML inicial, legíveis antes de qualquer script.
-3. **Prova rápida** — 412 sistemas · 6 anos · 4,8 no Google (137) · equipe própria.
+3. **Prova rápida** — 412 sistemas · 6 anos · 4,8 no Google (137) com estrelas · 11 pessoas, equipe própria.
 4. **Caso real** — casa em Sorocaba, conta de R$ 780 → média de R$ 118 em 12 meses, 6,4 kWp, instalado em março de 2025. É o único número "antes/depois" com conferência; vale mais que qualquer depoimento genérico.
 5. **A lei 14.300, sem enrolação** — o que mudou, por que continua compensando, por que a conta não zera (taxa mínima e custo do fio).
 6. **Telhado e garantias** — 25 anos painel, 10 inversor, 5 instalação (incluindo infiltração); assistência técnica autorizada da marca do inversor.
@@ -117,6 +117,7 @@ Decisões tomadas ao construir, e o porquê.
 - **Ilustrações próprias (hero, telha com selo, esquema da Lei 14.300, mapa de atendimento):** sem fotos, o visual sai do logo (sol de 5 raios, trapézio com grade); SVG inline, só tokens de cor, sem animação, sem texto além do que o brief diz. Detalhe em DESIGN.md.
 - **Política de privacidade:** guarda de 12 meses é proposta minha, a confirmar (ver `FALTA.md`).
 - **Hero com o diferencial no título:** o `<h1>` passou a trazer a equipe própria (instalação sem terceirizar), a resposta ao medo número um do brief, porque o título começava pela ressalva e soava como letra miúda. A promessa qualificada ("na média dos nossos clientes", 75% a 90%) foi para o subtítulo, na mesma frase do retorno de 3 a 4 anos. O corte de R$ 450 foi para dentro do simulador, onde o valor é digitado; o simulador segue no hero, como manda a §3, e o aviso abaixo de R$ 450 continua sendo o do `app.js`.
+- **Prova rápida reorganizada:** "Equipe própria" repetia o `<h1>` e quebrava a grade por ser texto e não número; virou "11 pessoas" (brief: "onze pessoas"). O 4,8 sem estrelas não parecia nota, então ganhou cinco estrelas (a quinta cheia até 80%), com `aria-label` único e sem link nem trecho de avaliação. A assistência técnica autorizada da marca do inversor estava no brief e não na página: entrou numa fileira de selos de texto com ícone, que fecha "Como funciona", junto de equipe própria, garantia de 5 anos e sede/raio de 80 km. O caso real (R$ 780 → R$ 118) volta em uma linha perto do botão do formulário, com link para a seção do caso.
 
 ### Bugs que a verificação pegou
 

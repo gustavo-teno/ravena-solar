@@ -109,6 +109,14 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .prova strong { display: block; font-size: clamp(2rem, 6vw, 3rem); line-height: 1; font-weight: 800; letter-spacing: -.02em; }
 .prova li > span { display: block; margin-top: 8px; font-size: .9375rem; color: var(--suave); }
 
+/* Prova rápida: estrelas da nota (4 cheias, a quinta até 80%) */
+.prova li { display: grid; grid-template-rows: subgrid; grid-row: span 3; row-gap: 0; align-content: start; }
+.prova li > span { grid-row: 3; }
+.prova strong { white-space: nowrap; }
+.il.estrelas { --traco: 2px; width: 128px; height: 24px; margin-top: 10px; }
+.il-estrela-cheia { fill: var(--ambar); stroke: var(--ambar); }
+.il-estrela-vazia { fill: none; stroke: var(--linha); }
+
 /* ---------- Caso real ---------- */
 .caso-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 32px; }
 .conta-barras { display: grid; gap: 20px; }
@@ -150,6 +158,11 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .etiqueta { display: inline-block; margin-top: 8px; padding: 4px 10px; border-radius: 999px; background: var(--ambar-fundo); border: 1px solid var(--ambar); font-size: .875rem; font-weight: 700; }
 .prazo { margin-top: 8px; padding: 18px 20px; border: 2px solid var(--azul); border-radius: 12px; background: var(--branco); }
 
+/* Como funciona: fileira de selos (texto com ícone de traço) */
+.selos { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--linha); }
+.selos li { display: flex; align-items: center; gap: 14px; padding: 18px 12px 18px 0; border-bottom: 1px solid var(--linha); font-weight: 600; line-height: 1.35; }
+.il.selo-icone { flex: none; width: 36px; height: 36px; }
+
 /* ---------- Investimento ---------- */
 .invest-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 32px; }
 .preco { font-size: clamp(2rem, 7vw, 3.25rem); font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
@@ -184,6 +197,8 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .erro::before { content: "\26A0\FE0E  "; }
 .armadilha { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .aviso-conta { margin-bottom: 18px; padding: 14px 16px; background: var(--alerta-fundo); border-left: 4px solid var(--alerta); border-radius: 0 10px 10px 0; font-weight: 600; }
+.caso-linha { margin-bottom: 16px; font-size: .9375rem; color: var(--suave); }
+.caso-linha a { font-weight: 700; color: var(--azul); }
 .nota-form { margin-top: 14px; font-size: .9375rem; color: var(--suave); }
 .erro-geral { margin-top: 16px; padding: 14px 16px; background: var(--alerta-fundo); border: 2px solid var(--alerta); border-radius: 10px; font-weight: 600; }
 .confirmacao { margin-top: 24px; padding: 28px; background: var(--branco); border: 2px solid var(--azul); border-left-width: 10px; border-left-color: var(--ambar); border-radius: 14px; }
@@ -246,6 +261,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
   .cartoes--3 { grid-template-columns: repeat(3, 1fr); }
   .prova ul { grid-template-columns: repeat(4, 1fr); }
   .prova li { border-bottom: 0 !important; padding-inline: 24px; border-right: 1px solid var(--linha); }
+  .prova li:nth-child(odd) { padding-left: 24px; }
   .prova li:first-child { padding-left: 0; }
   .prova li:last-child { border-right: 0; }
   .caso-grade { grid-template-columns: 1.3fr 1fr; align-items: center; gap: 56px; }
@@ -253,6 +269,10 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
   .chuva--il { grid-template-columns: minmax(0, 340px) 1fr; }
   .il-lei--h { display: block; }
   .il-lei--v { display: none; }
+  .selos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .selos li { padding-inline: 20px; border-right: 1px solid var(--linha); }
+  .selos li:nth-child(odd) { padding-left: 0; }
+  .selos li:nth-child(even) { border-right: 0; }
   .pedido-topo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
   .invest-grade { grid-template-columns: 1fr 1fr; gap: 56px; }
   .form-caixa { padding: 32px; }
@@ -261,6 +281,11 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 }
 @media (min-width: 960px) {
   .hero-grade { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 56px; }
+  .selos { grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 0; }
+  .selos li { border-bottom: 0; border-right: 1px solid var(--linha); padding-inline: 20px; }
+  .selos li:first-child { padding-left: 0; }
+  .selos li:nth-child(even) { border-right: 1px solid var(--linha); }
+  .selos li:last-child { border-right: 0; }
   .sim { padding: 28px; }
   .hero-lado { position: sticky; top: 88px; }
   .il-hero { width: 100%; height: auto; max-height: 240px; }
