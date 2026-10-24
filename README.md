@@ -10,7 +10,7 @@ npm run dev        # build + servidor em http://localhost:3000
 npm run verificar  # build + checks + testes
 ```
 
-Node 20 ou mais novo. Sem framework: HTML, CSS e um módulo JS. Só há uma dependência de desenvolvimento (`@resvg/resvg-js`, usada para gerar a imagem de compartilhamento).
+Node 20 ou mais novo. Sem framework: HTML, CSS e um módulo JS. As dependências de desenvolvimento são `@resvg/resvg-js` (imagem de compartilhamento) e `@fontsource-variable/archivo` (fonte dos títulos).
 
 ## Como é organizado
 
@@ -27,6 +27,10 @@ Node 20 ou mais novo. Sem framework: HTML, CSS e um módulo JS. Só há uma depe
 | `public/` | resultado do build (não versionado) |
 
 O build lê as cores do `logo.svg`, injeta as opções do formulário a partir de `shared/validacao.js` e embute o CSS no HTML.
+
+## Fonte dos títulos
+
+A Archivo (OFL) fica em `public/fonts/archivo-latin-wght.woff2`, copiada no build de `node_modules/@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2` (só o subconjunto latino, só o eixo `wght`; limite de 50 KB). O CSS está no topo de `src/estilos.css` (`@font-face`, reserva com os overrides de métrica e as variáveis `--fonte-titulo` e `--fonte-texto`). Para trocar de fonte, mude o pacote e o `copyFileSync` em `scripts/build.mjs`, recalcule os overrides da reserva e **mude o nome do arquivo** (por exemplo `archivo-latin-wght-2.woff2`, em `build.mjs`, no `@font-face` e nos `<link rel="preload">`): o `vercel.json` serve `/fonts/*` com `Cache-Control: immutable` de um ano, e o nome não tem hash.
 
 ## Destino dos pedidos: demonstração
 

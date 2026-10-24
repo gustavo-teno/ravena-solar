@@ -43,6 +43,7 @@ const PARES = [
   ['esquema da lei: rótulos sobre o papel', 'azul', 'papel', T],
   ['selo: "5" âmbar sobre azul (texto grande)', 'ambar', 'azul', G],
   ['selo: texto branco sobre azul', 'branco', 'azul', T],
+  ['título do hero: parte suave sobre o papel (texto grande)', 'suave', 'papel', G],
 ];
 
 let falhas = 0;

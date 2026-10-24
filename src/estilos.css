@@ -1,5 +1,38 @@
 /* As variáveis de cor (--azul, --ambar, --laranja e derivadas) são geradas no build a partir do logo.svg. */
 
+/* Archivo (OFL), variável, só o eixo wght, subconjunto latino. O arquivo é copiado no build de
+   @fontsource-variable/archivo; se a fonte mudar, troque também o nome do arquivo (cache imutável). */
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/archivo-latin-wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  /* unicode-range do subconjunto latino de @fontsource-variable/archivo (wght.css) */
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Reserva com a métrica da Archivo sobre a Arial, para a troca não mexer no layout.
+   Origem: @capsizecss/metrics 4.4.0, archivo (unitsPerEm 1000, ascent 878, descent -210, lineGap 0,
+   xWidthAvg 440) e arial (unitsPerEm 2048, xWidthAvg 913).
+   size-adjust = (440/1000) / (913/2048) = 98,70%; ascent = 878 / 1000 / 0,9870 = 88,96%;
+   descent = 210 / 1000 / 0,9870 = 21,28%.
+   A reserva usa a Arial Bold (e não a regular) porque a Archivo só entra em peso 600 a 700: com a regular o
+   navegador engrossaria o traço por conta própria e a largura não bateria. */
+@font-face {
+  font-family: "Archivo reserva";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  font-weight: 500 900;
+  size-adjust: 98.7%;
+  ascent-override: 88.96%;
+  descent-override: 21.28%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --fonte-titulo: "Archivo", "Archivo reserva", system-ui, sans-serif;
+  --fonte-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -10,7 +43,7 @@ body {
   margin: 0;
   background: var(--papel);
   color: var(--azul);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--fonte-texto);
   font-size: 1.0625rem;
   line-height: 1.55;
 }
@@ -70,24 +103,25 @@ ul, ol { padding: 0; list-style: none; }
 }
 .fundo-azul .rotulo { color: var(--ambar); }
 
-h2 { font-size: clamp(1.75rem, 4.6vw, 2.5rem); line-height: 1.15; font-weight: 700; letter-spacing: -.01em; margin-top: 8px; text-wrap: balance; }
-h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
+h1, h2, h3 { font-family: var(--fonte-titulo); }
+h2 { font-size: clamp(1.75rem, 4.6vw, 2.5rem); line-height: 1.15; font-weight: 650; letter-spacing: -.015em; margin-top: 8px; text-wrap: balance; }
+h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 600; letter-spacing: -.015em; }
 .intro { margin-top: 16px; max-width: 62ch; font-size: 1.125rem; }
 .suave { color: var(--suave); }
-.destaque { text-decoration: underline; text-decoration-color: var(--ambar); text-decoration-thickness: .14em; text-underline-offset: .1em; }
+.tom-suave { color: var(--suave); }
 
 /* ---------- Hero ---------- */
 .hero { padding: clamp(32px, 6vw, 72px) 0 clamp(40px, 7vw, 80px); }
 .hero-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
 .hero h1 {
-  font-size: clamp(2.125rem, 6.4vw, 2.5rem); line-height: 1.08; font-weight: 800;
+  font-size: clamp(2.125rem, 6.4vw, 2.5rem); line-height: 1.08; font-weight: 700;
   letter-spacing: -.02em; margin-top: 12px; text-wrap: balance;
 }
 .hero .sub { margin-top: 20px; font-size: 1.1875rem; max-width: 52ch; }
 
 /* ---------- Simulador ---------- */
 .sim { background: var(--branco); border: 2px solid var(--azul); border-radius: 14px; padding: 20px; }
-.sim h2 { font-size: 1.375rem; margin: 0; letter-spacing: 0; }
+.sim h2 { font-size: 1.375rem; margin: 0; }
 .sim .corte { margin-top: 6px; font-size: .9375rem; color: var(--suave); }
 .sim label { display: block; margin-top: 16px; font-weight: 600; }
 .sim-campo { display: flex; align-items: center; margin-top: 8px; border: 2px solid var(--azul); border-radius: 10px; background: var(--branco); }
@@ -97,7 +131,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .sim-campo input:focus { outline: none; }
 .sim-saida { margin-top: 16px; min-height: 4.5em; }
 .sim-saida .linha { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--linha); }
-.sim-saida .valor { font-size: 1.375rem; font-weight: 800; }
+.sim-saida .valor { font-family: var(--fonte-titulo); font-size: 1.375rem; font-weight: 700; }
 .sim-saida .nota { margin-top: 12px; font-size: .9375rem; color: var(--suave); }
 .sim-saida .aviso { padding: 12px 14px; border-radius: 10px; background: var(--ambar-fundo); border-left: 4px solid var(--ambar); }
 .sim .botao { margin-top: 16px; }
@@ -118,7 +152,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .prova li { padding: 24px 12px; border-bottom: 1px solid var(--linha); }
 .prova li:nth-child(odd) { border-right: 1px solid var(--linha); padding-left: 0; }
 .prova li:nth-last-child(-n+2) { border-bottom: 0; }
-.prova strong { display: block; font-size: clamp(2rem, 6vw, 3rem); line-height: 1; font-weight: 800; letter-spacing: -.02em; }
+.prova strong { display: block; font-family: var(--fonte-titulo); font-size: clamp(2rem, 6vw, 3rem); line-height: 1; font-weight: 700; letter-spacing: -.02em; }
 .prova li > span { display: block; margin-top: 8px; font-size: .9375rem; color: var(--suave); }
 
 /* Prova rápida: estrelas da nota (4 cheias, a quinta até 80%) */
@@ -133,7 +167,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .caso-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 32px; }
 .conta-barras { display: grid; gap: 20px; }
 .barra-info { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 8px; }
-.barra-info b { font-size: 1.75rem; font-weight: 800; }
+.barra-info b { font-family: var(--fonte-titulo); font-size: 1.75rem; font-weight: 700; }
 .barra { height: 28px; border-radius: 6px; background: var(--sobre-azul); width: var(--largura); }
 .barra--depois { background: var(--ambar); }
 .caso-dados { display: grid; grid-template-columns: repeat(3, auto); gap: 8px 24px; justify-content: start; }
@@ -149,11 +183,11 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 
 /* ---------- Garantias ---------- */
 .chuva { display: grid; gap: 20px; margin-top: 32px; padding: 28px; background: var(--azul); color: var(--branco); border-radius: 14px; }
-.chuva .grande { font-size: clamp(3rem, 12vw, 5rem); line-height: 1; font-weight: 800; color: var(--ambar); letter-spacing: -.03em; }
+.chuva .grande { font-family: var(--fonte-titulo); font-size: clamp(3rem, 12vw, 5rem); line-height: 1; font-weight: 700; color: var(--ambar); letter-spacing: -.03em; }
 .chuva h3 { font-size: 1.5rem; }
 .garantias { display: grid; gap: 12px; margin-top: 16px; }
 .garantias li { display: flex; align-items: baseline; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--linha); }
-.garantias b { min-width: 6.5ch; font-size: 1.75rem; font-weight: 800; }
+.garantias b { min-width: 6.5ch; font-family: var(--fonte-titulo); font-size: 1.75rem; font-weight: 700; }
 .garantias-nota { margin-top: 20px; }
 
 /* ---------- Passos ---------- */
@@ -162,7 +196,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .passos li::before {
   content: counter(passo); position: absolute; left: 0; top: 0;
   width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--azul); color: var(--branco); font-weight: 800;
+  background: var(--azul); color: var(--branco); font-family: var(--fonte-titulo); font-weight: 700;
 }
 .passos li::after { content: ""; position: absolute; left: 17px; top: 40px; bottom: 4px; width: 2px; background: var(--linha); }
 .passos li:last-child::after { display: none; }
@@ -179,7 +213,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 /* ---------- Investimento ---------- */
 .invest-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 32px; }
 .intro--junto { margin-top: 12px; }
-.preco { font-size: clamp(2rem, 7vw, 3.25rem); font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
+.preco { font-family: var(--fonte-titulo); font-size: clamp(2rem, 7vw, 3.25rem); font-weight: 700; line-height: 1.05; letter-spacing: -.02em; }
 .lista-ponto li { position: relative; padding: 10px 0 10px 24px; border-bottom: 1px solid var(--linha); }
 .lista-ponto li::before { content: ""; position: absolute; left: 0; top: 1.15em; width: 10px; height: 10px; border-radius: 50%; background: var(--ambar); border: 2px solid var(--azul); }
 
@@ -227,7 +261,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 
 /* ---------- Páginas de texto (privacidade, confirmação) ---------- */
 .texto { padding: clamp(32px, 6vw, 64px) 0 clamp(48px, 8vw, 96px); }
-.texto h1 { font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.1; font-weight: 800; letter-spacing: -.02em; }
+.texto h1 { font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.1; font-weight: 700; letter-spacing: -.02em; }
 .texto h2 { font-size: 1.375rem; margin-top: 36px; }
 .texto p, .texto ul { margin-top: 12px; max-width: 68ch; }
 .texto ul { list-style: disc; padding-left: 22px; }
@@ -255,8 +289,8 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .il text.il-sub { font-size: 24px; font-weight: 400; }
 .il text.il-txt-branco { fill: var(--branco); }
 .il text.il-txt-ambar, .il tspan.il-txt-ambar { fill: var(--ambar); }
-.il text.il-t-gr { font-size: 32px; }
-.il tspan.il-t-xg { font-size: 56px; }
+.il text.il-t-gr { font-family: var(--fonte-titulo); font-size: 32px; }
+.il tspan.il-t-xg { font-family: var(--fonte-titulo); font-size: 56px; }
 
 .il-hero { display: block; aspect-ratio: 480 / 300; height: 180px; width: auto; margin: 28px auto 0; }
 .il-lei { margin-top: 32px; }

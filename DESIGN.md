@@ -27,7 +27,21 @@ Contraste medido em `npm run check` (`scripts/checar-contraste.mjs`): texto norm
 
 ## Tipografia
 
-Pilha de sistema (`system-ui`, `Segoe UI`, `Roboto`, `Helvetica Neue`, `Arial`): zero download, sem piscar nem refluxo. Título em 800, corpo em 400, números com `tabular-nums`. Escala fluida com `clamp()`: título do hero 2,125–3,5 rem; h2 1,75–2,5 rem; corpo 1,0625 rem; linha de leitura limitada a ~62–68 caracteres.
+**Títulos e números grandes: Archivo** (licença OFL), variável, só o eixo `wght`, subconjunto latino, hospedada no próprio site (`/fonts/archivo-latin-wght.woff2`, 34,1 KB medidos; orçamento de 50 KB). Tem números tabulares e todos os acentos do português. O arquivo vem do pacote `@fontsource-variable/archivo` (devDependency) e o build copia só esse arquivo.
+
+**Corpo, rótulos, botões, resumo do FAQ, rodapé e `.il-sub`: pilha de sistema** (`system-ui`, `Segoe UI`, `Roboto`, `Helvetica Neue`, `Arial`), em 400, sem download. Duas variáveis em `:root`: `--fonte-titulo` e `--fonte-texto`.
+
+Por quê: com a pilha de sistema em peso 800 nos títulos, a página tinha cara de painel administrativo e nenhuma identidade (Segoe UI no Windows, San Francisco no iPhone). A Archivo dá um rosto só aos títulos e aos números, sem custo no corpo do texto.
+
+Onde entra: `h1`, `h2`, `h3`, `.texto h1`, `.prova strong`, `.preco`, `.chuva .grande`, `.barra-info b`, `.garantias b`, `.sim-saida .valor`, o número dos passos (`.passos li::before`) e os `<text>` `.il-t-xg` e `.il-t-gr` do selo de garantia. Pesos: h1 700, h2 650, h3 600, números grandes 700 (o 800 da pilha de sistema ficava pesado na Archivo). `letter-spacing` de -.02em no h1 e nos números grandes e de -.015em em h2 e h3. Números com `tabular-nums lining-nums` (`.num`).
+
+Sem piscar e sem refluxo: `font-display: swap`, `<link rel="preload">` da fonte no `<head>` e uma reserva ("Archivo reserva", `local("Arial Bold")`) com a métrica da Archivo: `size-adjust` 98,7%, `ascent-override` 88,96%, `descent-override` 21,28%, `line-gap-override` 0%. Origem: `@capsizecss/metrics` 4.4.0 (Archivo: unitsPerEm 1000, ascent 878, descent -210, xWidthAvg 440; Arial: unitsPerEm 2048, xWidthAvg 913); as contas estão em comentário no `src/estilos.css`. A reserva usa a Arial Bold porque a Archivo só entra em peso 600 a 700. Em sistemas sem Arial (Android) a reserva não existe e o navegador usa o próximo da pilha, sem ajuste.
+
+Todo caractere dos títulos e números grandes está no subconjunto latino (conferido: não há "→", e "−", "·", aspas e travessões estão dentro do intervalo). Se um título ganhar um glifo fora dele, tire o glifo ou deixe o elemento na fonte do sistema; nunca deixe um glifo cair na reserva no meio de uma palavra.
+
+Escala fluida com `clamp()`: título do hero 2,125–2,5 rem (`clamp(2.125rem, 6.4vw, 2.5rem)`); h2 1,75–2,5 rem; h3 1,25 rem; corpo 1,0625 rem; linha de leitura limitada a ~62–68 caracteres.
+
+**Hierarquia por cor, não por enfeite.** O título do hero tem dois tons, sem mudar o texto: "Energia solar instalada" em `--suave` (`.tom-suave`) e "pela nossa equipe, sem terceirizar." em `--azul`, de modo que o diferencial fica na cor forte. É um recurso de uso único: nenhum outro título usa dois tons. O sublinhado âmbar (`.destaque`) saiu; "75% a 90%" é `<strong class="num">`, como "3 a 4 anos".
 
 ## Espaço e forma
 

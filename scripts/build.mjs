@@ -47,6 +47,9 @@ copyFileSync(new URL('src/app.js', raiz), new URL('public/app.js', raiz));
 copyFileSync(new URL('shared/validacao.js', raiz), new URL('public/validacao.js', raiz));
 copyFileSync(new URL('shared/simulacao.js', raiz), new URL('public/simulacao.js', raiz));
 copyFileSync(new URL('logo.svg', raiz), new URL('public/logo.svg', raiz));
+// Fonte dos títulos: só o subconjunto latino, só o eixo wght (o pacote inteiro não vai para public/).
+mkdirSync(new URL('public/fonts/', raiz), { recursive: true });
+copyFileSync(new URL('node_modules/@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2', raiz), new URL('public/fonts/archivo-latin-wght.woff2', raiz));
 if (existsSync(new URL('src/og.png', raiz))) copyFileSync(new URL('src/og.png', raiz), new URL('public/og.png', raiz));
 
 // Ícone da aba: o sol e o telhado do logo, com as cores do logo.
