@@ -101,6 +101,16 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .sim-saida .nota { margin-top: 12px; font-size: .9375rem; color: var(--suave); }
 .sim-saida .aviso { padding: 12px 14px; border-radius: 10px; background: var(--ambar-fundo); border-left: 4px solid var(--ambar); }
 .sim .botao { margin-top: 16px; }
+.sim-atalhos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.sim-atalhos button { font: inherit; font-size: .9375rem; font-weight: 600; min-height: 40px; padding: 0 14px; border: 2px solid var(--azul); border-radius: 10px; background: var(--branco); color: var(--azul); cursor: pointer; }
+.sim-atalhos button:hover { background: var(--azul-claro); }
+.sim-atalhos button:focus-visible { outline: 3px solid var(--azul); outline-offset: 2px; }
+/* Barras do simulador, sobre branco: "hoje" em azul; a estimativa é uma faixa (início a fim), não um valor. */
+.sim-saida .conta-barras { gap: 8px; margin-top: 12px; }
+.sim-saida .barra-info { margin-bottom: 4px; font-size: .9375rem; }
+.sim .barra { height: 18px; background: var(--azul); }
+.sim .barra-faixa { position: relative; height: 18px; border-radius: 6px; background: var(--azul-claro); }
+.sim .barra-seg { position: absolute; top: 0; bottom: 0; left: var(--inicio); width: calc(var(--fim) - var(--inicio)); box-sizing: border-box; border: 2px solid var(--azul); border-radius: 6px; background: var(--ambar); }
 
 /* ---------- Prova rápida ---------- */
 .prova { background: var(--branco); border-block: 1px solid var(--linha); }
@@ -303,6 +313,10 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
   .duas-col { grid-template-columns: minmax(0, .38fr) minmax(0, .62fr); gap: 64px; align-items: start; }
   .lei-topo { grid-template-columns: minmax(0, .5fr) minmax(0, .5fr); gap: 64px; align-items: end; }
   .lei-topo .intro { margin-top: 0; }
+}
+/* Em janela baixa, o simulador (campo, resultado, barras e botão) vale mais que o desenho acima dele. */
+@media (min-width: 960px) and (max-height: 999px) {
+  .il-hero { display: none; }
 }
 /* Sticky só se a coluna cabe na tela: em janela baixa ela prenderia o texto. */
 @media (min-width: 960px) and (min-height: 560px) {

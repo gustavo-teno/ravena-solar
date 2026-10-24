@@ -26,6 +26,9 @@ export function textoVisivel(html) {
     .replace(/[ \t]+/g, ' ');
 }
 
+// Textos que o navegador escreve na tela: app.js e a saída do simulador (shared/simulacao.js).
 export function textoDoApp() {
-  return readFileSync(new URL('../src/app.js', import.meta.url), 'utf8');
+  return ['../src/app.js', '../shared/simulacao.js']
+    .map((arquivo) => readFileSync(new URL(arquivo, import.meta.url), 'utf8'))
+    .join('\n');
 }

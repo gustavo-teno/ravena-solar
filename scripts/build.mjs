@@ -2,7 +2,8 @@
 // shared/validacao.js) e embute o CSS no HTML para a página não piscar sem estilo.
 import { mkdirSync, readFileSync, writeFileSync, copyFileSync, rmSync, existsSync } from 'node:fs';
 import { cssDeTokens, tokens } from './tokens.mjs';
-import { CIDADES, FAIXAS_CONTA } from '../shared/validacao.js';
+import { CIDADES, FAIXAS_CONTA, estimarConta } from '../shared/validacao.js';
+import { htmlDaSimulacao } from '../shared/simulacao.js';
 
 const raiz = new URL('../', import.meta.url);
 const ler = (caminho) => readFileSync(new URL(caminho, raiz), 'utf8');
@@ -22,9 +23,15 @@ const css = (cssDeTokens() + ler('src/estilos.css'))
 
 const opcoes = (lista) => lista.map((i) => `<option value="${i.id}">${i.rotulo}</option>`).join('\n                ');
 
+// Conta do caso real (brief: "conta de R$ 780 por mês"): o simulador abre com ela, rotulada como exemplo.
+const CONTA_DO_EXEMPLO = 780;
+const simulacao = htmlDaSimulacao(estimarConta(CONTA_DO_EXEMPLO), { exemplo: true });
+
 function montar(arquivo) {
   return ler('src/' + arquivo)
     .replace('<!--CSS-->', `<style>${css}</style>`)
+    .replace('<!--SIMULACAO-->', simulacao)
+    .replaceAll('%CONTA_EXEMPLO%', String(CONTA_DO_EXEMPLO))
     .replace('<!--CIDADES-->', opcoes(CIDADES))
     .replace('<!--FAIXAS-->', opcoes(FAIXAS_CONTA))
     .replaceAll('%AZUL%', tokens.azul)
@@ -38,6 +45,7 @@ for (const pagina of ['index.html', 'politica-de-privacidade.html', 'pedido-envi
 // O navegador usa os mesmos arquivos do servidor.
 copyFileSync(new URL('src/app.js', raiz), new URL('public/app.js', raiz));
 copyFileSync(new URL('shared/validacao.js', raiz), new URL('public/validacao.js', raiz));
+copyFileSync(new URL('shared/simulacao.js', raiz), new URL('public/simulacao.js', raiz));
 copyFileSync(new URL('logo.svg', raiz), new URL('public/logo.svg', raiz));
 if (existsSync(new URL('src/og.png', raiz))) copyFileSync(new URL('src/og.png', raiz), new URL('public/og.png', raiz));
 

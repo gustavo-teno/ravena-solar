@@ -80,13 +80,11 @@
         <label for="sim-valor">Valor médio da sua conta</label>
         <div class="sim-campo">
           <span aria-hidden="true">R$</span>
-          <input id="sim-valor" inputmode="decimal" autocomplete="off" placeholder="780" aria-describedby="sim-saida">
+          <input id="sim-valor" inputmode="decimal" autocomplete="off" value="%CONTA_EXEMPLO%" placeholder="%CONTA_EXEMPLO%" aria-describedby="sim-saida">
         </div>
-        <div class="sim-saida" id="sim-saida" aria-live="polite">
-          <p class="nota">Digite o valor e veja a estimativa pela média dos nossos clientes.</p>
-        </div>
-        <a class="botao botao--cheio" id="sim-continuar" href="#pedido" hidden>Pedir simulação com essa conta</a>
-        <noscript><p class="nota-form">Sem JavaScript o cálculo não aparece, mas o pedido de simulação funciona normalmente <a href="#pedido">no formulário abaixo</a>.</p></noscript>
+        <div class="sim-saida" id="sim-saida" aria-live="polite"><!--SIMULACAO--></div>
+        <a class="botao botao--cheio" id="sim-continuar" href="#pedido">Pedir simulação</a>
+        <noscript><p class="nota-form">Sem JavaScript, o cálculo da sua conta não aparece, mas o pedido funciona normalmente no formulário abaixo.</p></noscript>
       </div>
       </div>
     </div>

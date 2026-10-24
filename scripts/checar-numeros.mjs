@@ -38,6 +38,8 @@ const PERMITIDOS = {
   '2025': [{ fonte: brief('"instalado em março de 2025"') }],
   '14.300': [{ fonte: brief('"desde a Lei 14.300"') }],
   '85': [{ fonte: 'derivado do caso real: 1 − 118/780 = 84,9%, rotulado como "neste caso", nunca como média' }],
+  '78': [{ fonte: 'derivado do exemplo do simulador: estimarConta(780), queda de 90%', em: ['index.html'] }],
+  '195': [{ fonte: 'derivado do exemplo do simulador: estimarConta(780), queda de 75%', em: ['index.html'] }],
   '700': [{ fonte: FAIXA, em: ['index.html'] }],
   '1.000': [{ fonte: FAIXA, em: ['index.html'] }],
   '4 MB': [{ fonte: 'limite técnico do anexo (corpo máximo de função na Vercel é 4,5 MB)', em: ['index.html'] }],

@@ -4,14 +4,16 @@ import {
   lerValorEmReais,
   estimarConta,
   validarPedido,
-  VALOR_MINIMO_CONTA,
+  FAIXAS_CONTA,
   ANEXO_MAX_BYTES,
 } from './validacao.js';
+import { htmlDaSimulacao } from './simulacao.js';
 
 const reais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
 const $ = (id) => document.getElementById(id);
 
 /* ---------- Simulador ---------- */
+// O HTML inicial já traz o exemplo (calculado no build); este código só age quando a pessoa mexe.
 const entradaSim = $('sim-valor');
 const saidaSim = $('sim-saida');
 const continuar = $('sim-continuar');
@@ -19,30 +21,42 @@ const selectConta = $('conta');
 
 function mostrarSimulacao() {
   const texto = entradaSim.value.trim();
-  continuar.hidden = true;
-  if (!texto) {
-    saidaSim.innerHTML = '<p class="nota">Digite o valor e veja a estimativa pela média dos nossos clientes.</p>';
-    return;
-  }
-  const estimativa = estimarConta(lerValorEmReais(texto));
-  if (!estimativa.valido) {
-    saidaSim.innerHTML = '<p class="aviso">Digite só o valor em reais, por exemplo 780 ou 780,00.</p>';
-    return;
-  }
-  if (!estimativa.atende) {
-    saidaSim.innerHTML =
-      `<p class="aviso"><strong>Nesse valor a conta não fecha.</strong> Abaixo de ${reais.format(VALOR_MINIMO_CONTA)} por mês nós mesmos desaconselhamos a instalação.</p>`;
-    return;
-  }
-  saidaSim.innerHTML = `
-    <div class="linha"><span>Sua conta hoje</span><span class="valor num">${reais.format(estimativa.conta)}</span></div>
-    <div class="linha"><span>Estimativa com o sistema</span><span class="valor num">${reais.format(estimativa.de)} a ${reais.format(estimativa.ate)}</span></div>
-    <p class="nota">Estimativa pela média dos nossos clientes, que veem a conta cair de 75% a 90%. Nunca chega a zero: sempre resta a taxa mínima e o custo do fio. Quem dimensiona o seu caso é a visita técnica.</p>`;
-  continuar.dataset.faixa = estimativa.faixa;
-  continuar.hidden = false;
+  const estimativa = texto ? estimarConta(lerValorEmReais(texto)) : null;
+  saidaSim.innerHTML = htmlDaSimulacao(estimativa);
+  continuar.hidden = !estimativa?.atende;
+  continuar.textContent = 'Pedir simulação com essa conta';
+  if (estimativa?.atende) continuar.dataset.faixa = estimativa.faixa;
+  else delete continuar.dataset.faixa;
 }
 
 entradaSim.addEventListener('input', mostrarSimulacao);
+
+// Foco no campo: o exemplo é trocado por cima, sem apagar na mão.
+let recemFocado = false;
+entradaSim.addEventListener('focus', () => {
+  entradaSim.select();
+  recemFocado = true;
+});
+entradaSim.addEventListener('mouseup', (evento) => {
+  if (recemFocado) evento.preventDefault(); // o clique não desfaz a seleção
+  recemFocado = false;
+});
+
+// Atalhos: os limites das faixas do formulário (o último, sem teto, não é um valor).
+const atalhos = document.createElement('div');
+atalhos.className = 'sim-atalhos';
+for (const { ate } of FAIXAS_CONTA.filter((f) => Number.isFinite(f.ate))) {
+  const botao = document.createElement('button');
+  botao.type = 'button';
+  botao.textContent = reais.format(ate);
+  botao.addEventListener('click', () => {
+    entradaSim.value = String(ate);
+    mostrarSimulacao();
+  });
+  atalhos.append(botao);
+}
+entradaSim.closest('.sim-campo').after(atalhos);
+
 continuar.addEventListener('click', () => {
   if (continuar.dataset.faixa) {
     selectConta.value = continuar.dataset.faixa;

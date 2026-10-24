@@ -18,6 +18,7 @@ Node 20 ou mais novo. Sem framework: HTML, CSS e um módulo JS. Só há uma depe
 |---|---|
 | `src/` | HTML, CSS e `app.js` (simulador e envio sem recarregar) |
 | `shared/validacao.js` | **a regra do pedido**, usada pelo navegador e pelo servidor (obrigatórios, faixa abaixo de R$ 450, cidade, WhatsApp, anexo, simulador) |
+| `shared/simulacao.js` | HTML da saída do simulador (exemplo, aviso e resultado com barras), usado pelo build e pelo navegador |
 | `server/pedido.js` | recebe `POST /api/pedido`; com JS responde JSON, sem JS responde 303 para a confirmação |
 | `server/destino.js` | **ponto único de entrega dos pedidos** |
 | `api/pedido.js` | a mesma função como função da Vercel |
