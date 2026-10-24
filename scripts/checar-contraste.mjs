@@ -30,6 +30,8 @@ const PARES = [
   ['atalho de valor: texto azul sobre branco', 'azul', 'branco', T],
   ['atalho de valor no hover: azul sobre azul claro', 'azul', 'azul-claro', T],
   ['texto sobre azul claro (hover)', 'azul', 'azul-claro', T],
+  ['régua: texto azul sobre azul claro', 'azul', 'azul-claro', T],
+  ['régua: trecho âmbar com borda azul sobre branco', 'azul', 'branco', G],
   ['texto sobre azul claro (pedido)', 'azul', 'azul-claro', T],
   ['texto suave sobre azul claro (pedido)', 'suave', 'azul-claro', T],
   ['bolinha da lista (âmbar) com borda azul', 'azul', 'papel', G],
