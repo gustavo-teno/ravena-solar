@@ -1,0 +1,20 @@
+# Variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Chaves e credenciais
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+credentials.json
+secrets.*
+service-account*.json
+
+# Configurações locais do Claude
+.claude/settings.local.json
+node_modules/
+public/
+.vercel/

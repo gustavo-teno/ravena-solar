@@ -1,0 +1,20 @@
+{
+  "name": "ravena-solar-landing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page da Ravena Solar (cliente fictício da P1). Uma ação: pedir simulação.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node server/dev.mjs",
+    "start": "node server/dev.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/checar-numeros.mjs && node scripts/checar-palavras.mjs && node scripts/checar-cores.mjs && node scripts/checar-contraste.mjs",
+    "verificar": "npm run build && npm run check && npm test",
+    "og": "node scripts/gerar-og.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}
