@@ -11,6 +11,7 @@ const PARES = [
   ['texto suave sobre o papel', 'suave', 'papel', T],
   ['texto suave sobre branco', 'suave', 'branco', T],
   ['botão: texto azul sobre âmbar', 'azul', 'ambar', T],
+  ['botão âmbar sobre fundo branco (borda do componente)', 'azul', 'branco', G],
   ['botão no hover: azul sobre âmbar claro', 'azul', 'ambar-hover', T],
   ['branco sobre azul', 'branco', 'azul', T],
   ['texto suave sobre azul', 'sobre-azul', 'azul', T],

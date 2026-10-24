@@ -57,19 +57,12 @@ for (const { ate } of FAIXAS_CONTA.filter((f) => Number.isFinite(f.ate))) {
 }
 entradaSim.closest('.sim-campo').after(atalhos);
 
-continuar.addEventListener('click', () => {
-  if (continuar.dataset.faixa) {
-    selectConta.value = continuar.dataset.faixa;
-    atualizarAvisoConta();
-  }
-});
-
 /* ---------- Formulário ---------- */
 const form = $('form-pedido');
 const botaoEnviar = $('enviar');
 const avisoConta = $('aviso-conta');
 const erroGeral = $('erro-geral');
-const campos = ['nome', 'whatsapp', 'cidade', 'conta', 'anexo'];
+const campos = ['conta', 'cidade', 'nome', 'whatsapp', 'anexo']; // ordem da tela
 
 form.noValidate = true; // sem JS, o navegador valida; com JS, usamos a regra compartilhada
 
@@ -80,6 +73,15 @@ function atualizarAvisoConta() {
 }
 selectConta.addEventListener('change', atualizarAvisoConta);
 atualizarAvisoConta();
+
+// Todo "Pedir simulação" que carrega uma faixa (o do caso, o do simulador) leva a conta já escolhida.
+// A faixa nunca vai na URL: o link só aponta para #pedido.
+document.addEventListener('click', (evento) => {
+  const link = evento.target.closest('a[data-faixa][href="#pedido"]');
+  if (!link) return;
+  selectConta.value = link.dataset.faixa;
+  atualizarAvisoConta();
+});
 
 function limparErros() {
   erroGeral.hidden = true;

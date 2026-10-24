@@ -146,6 +146,7 @@
           <p>É um caso real. Na média dos nossos clientes, a queda fica entre <span class="num">75% e 90%</span>. Quem dimensiona o seu sistema é a visita técnica.</p>
         </div>
       </div>
+      <a class="botao botao--fim" href="#pedido" data-faixa="%FAIXA_CASO%">Pedir simulação</a>
     </div>
   </section>
 
@@ -291,6 +292,7 @@
         <li><b class="num">10 anos</b><span>de garantia do inversor</span></li>
       </ul>
       <p class="garantias-nota">Somos assistência técnica autorizada da marca do inversor que instalamos.</p>
+      <a class="botao botao--fim" href="#pedido">Pedir simulação</a>
     </div>
   </section>
 
@@ -331,6 +333,7 @@
           <span>Sede em Sorocaba, atendimento num raio de <span class="num">80 km</span></span>
         </li>
       </ul>
+      <a class="botao botao--fim" href="#pedido">Pedir simulação</a>
     </div>
   </section>
 
@@ -391,35 +394,35 @@
 
   <!-- 9. Pedido de simulação -->
   <section class="secao fundo-claro" id="pedido" aria-labelledby="titulo-pedido">
-    <div class="cx">
+    <div class="cx pedido-grade">
       <p class="rotulo">Pedir simulação</p>
       <h2 id="titulo-pedido">Resposta no mesmo dia útil, por WhatsApp.</h2>
-      <div class="pedido-topo">
-        <div>
-          <p class="intro">A visita técnica ao telhado é gratuita e sem compromisso. Atendemos casas num raio de <span class="num">80 km</span> de Sorocaba:</p>
-          <ul class="cidades" aria-label="Cidades atendidas">
-            <li>Sorocaba</li><li>Votorantim</li><li>Itu</li><li>Salto</li>
-          </ul>
-        </div>
-        <svg class="il il-mapa" viewBox="0 0 560 400" role="img" aria-label="Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu."><title>Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu.</title>
-          <circle class="il-fundo il-tracejado" cx="280" cy="200" r="170"/>
-          <path d="M280 200 H110"/>
-          <text class="il-sub" x="195" y="186" text-anchor="middle">raio de 80 km</text>
-          <circle class="il-branco" cx="335" cy="142" r="8"/>
-          <text x="319" y="150" text-anchor="end">Itu</text>
-          <circle class="il-branco" cx="358" cy="104" r="8"/>
-          <text x="342" y="112" text-anchor="end">Salto</text>
-          <circle class="il-branco" cx="286" cy="228" r="8"/>
-          <text x="270" y="236" text-anchor="end">Votorantim</text>
-          <circle class="il-ambar" cx="280" cy="200" r="11"/>
-          <text x="298" y="208">Sorocaba</text>
-        </svg>
+      <div class="pedido-intro">
+        <p class="intro">A visita técnica ao telhado é gratuita e sem compromisso. Atendemos casas num raio de <span class="num">80 km</span> de Sorocaba:</p>
+        <ul class="cidades" aria-label="Cidades atendidas">
+          <li>Sorocaba</li><li>Votorantim</li><li>Itu</li><li>Salto</li>
+        </ul>
       </div>
       <p class="nao-atendemos"><strong>Para quem é:</strong> casas com conta acima de <span class="num">R$&nbsp;450</span> por mês, em Sorocaba e região. <strong>Fora do que fazemos:</strong> indústria, comércio acima de <span class="num">75 kWp</span>, sistema com bateria e manutenção de sistema instalado por outra empresa.</p>
 
       <div class="form-caixa">
         <form id="form-pedido" action="/api/pedido" method="post" enctype="multipart/form-data">
           <div class="form-duas">
+            <div class="campo campo--conta">
+              <label for="conta">Valor médio da conta de luz</label>
+              <select id="conta" name="conta" required>
+                <option value="">Selecione</option>
+                <!--FAIXAS-->
+              </select>
+            </div>
+            <p class="aviso-conta" id="aviso-conta" role="status" hidden>%AVISO_CONTA%</p>
+            <div class="campo campo--cidade">
+              <label for="cidade">Cidade</label>
+              <select id="cidade" name="cidade" required>
+                <option value="">Selecione</option>
+                <!--CIDADES-->
+              </select>
+            </div>
             <div class="campo">
               <label for="nome">Nome</label>
               <input id="nome" name="nome" autocomplete="name" maxlength="100" required>
@@ -428,22 +431,7 @@
               <label for="whatsapp">WhatsApp com DDD</label>
               <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(15) 99999-9999" required>
             </div>
-            <div class="campo">
-              <label for="cidade">Cidade</label>
-              <select id="cidade" name="cidade" required>
-                <option value="">Selecione</option>
-                <!--CIDADES-->
-              </select>
-            </div>
-            <div class="campo">
-              <label for="conta">Valor médio da conta de luz</label>
-              <select id="conta" name="conta" required>
-                <option value="">Selecione</option>
-                <!--FAIXAS-->
-              </select>
-            </div>
           </div>
-          <p class="aviso-conta" id="aviso-conta" role="status" hidden>%AVISO_CONTA%</p>
           <div class="campo">
             <label for="anexo">Foto ou PDF da conta de luz <span class="dica">(opcional)</span></label>
             <input id="anexo" name="anexo" type="file" accept="image/*,application/pdf" aria-describedby="dica-anexo">
@@ -460,6 +448,19 @@
           <p>Respondemos por WhatsApp no mesmo dia útil. A visita técnica ao telhado é gratuita e sem compromisso.</p>
         </div>
       </div>
+      <svg class="il il-mapa" viewBox="0 0 560 400" role="img" aria-label="Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu."><title>Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu.</title>
+        <circle class="il-fundo il-tracejado" cx="280" cy="200" r="170"/>
+        <path d="M280 200 H110"/>
+        <text class="il-sub" x="195" y="186" text-anchor="middle">raio de 80 km</text>
+        <circle class="il-branco" cx="335" cy="142" r="8"/>
+        <text x="319" y="150" text-anchor="end">Itu</text>
+        <circle class="il-branco" cx="358" cy="104" r="8"/>
+        <text x="342" y="112" text-anchor="end">Salto</text>
+        <circle class="il-branco" cx="286" cy="228" r="8"/>
+        <text x="270" y="236" text-anchor="end">Votorantim</text>
+        <circle class="il-ambar" cx="280" cy="200" r="11"/>
+        <text x="298" y="208">Sorocaba</text>
+      </svg>
     </div>
   </section>
 </main>

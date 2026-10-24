@@ -86,6 +86,7 @@ ul, ol { padding: 0; list-style: none; }
 .botao[disabled] { opacity: .6; cursor: progress; }
 .botao--pequeno { min-height: 44px; padding: 8px 18px; }
 .botao--cheio { width: 100%; }
+.botao--fim { margin-top: 32px; width: 100%; }
 .botao--secundario { background: transparent; }
 .botao--secundario:hover { background: var(--azul-claro); }
 
@@ -298,8 +299,15 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 600; letter-spacing: -.
 .il-lei--v { aspect-ratio: 360 / 500; max-width: 360px; }
 .il-telha { aspect-ratio: 400 / 264; }
 .so-leitor { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.pedido-topo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: center; }
-.il-mapa { aspect-ratio: 560 / 400; max-width: 520px; }
+.pedido-grade { display: grid; grid-template-columns: minmax(0, 1fr); }
+.pedido-grade .rotulo { grid-area: rotulo; }
+.pedido-grade h2 { grid-area: titulo; }
+.pedido-intro { grid-area: intro; }
+.pedido-grade .nao-atendemos { grid-area: nao; }
+.pedido-grade .form-caixa { grid-area: form; }
+.pedido-grade .il-mapa { grid-area: mapa; margin-top: 32px; }
+.pedido-grade { grid-template-areas: "rotulo" "titulo" "intro" "nao" "form" "mapa"; }
+.il-mapa { aspect-ratio: 560 / 400; max-width: 360px; }
 .il-mapa text { font-size: 24px; }
 .il-mapa text.il-sub { font-size: 22px; }
 
@@ -327,10 +335,13 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 600; letter-spacing: -.
   .selos li { padding-inline: 20px; border-right: 1px solid var(--linha); }
   .selos li:nth-child(odd) { padding-left: 0; }
   .selos li:nth-child(even) { border-right: 0; }
-  .pedido-topo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+  .botao--fim { width: auto; }
   .invest-grade { grid-template-columns: 1fr 1fr; gap: 56px; }
   .form-caixa { padding: 32px; }
   .form-duas { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+  .form-duas .campo--conta { grid-area: 1 / 1; }
+  .form-duas .campo--cidade { grid-area: 1 / 2; }
+  .form-duas .aviso-conta { grid-area: 2 / 1 / 3 / -1; }
   .rodape .cx { grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
 }
 @media (min-width: 960px) {
@@ -345,6 +356,13 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 600; letter-spacing: -.
   .il-hero { width: 100%; max-width: 560px; height: auto; margin: 48px 0 0; }
   .duas-col { grid-template-columns: minmax(0, .38fr) minmax(0, .62fr); gap: 64px; align-items: start; }
   .lei-topo { grid-template-columns: minmax(0, .5fr) minmax(0, .5fr); gap: 64px; align-items: end; }
+  .pedido-grade {
+    grid-template-columns: minmax(0, .42fr) minmax(0, .58fr); column-gap: 64px;
+    grid-template-rows: auto auto auto auto auto 1fr;
+    grid-template-areas: "rotulo ." "titulo form" "intro form" "mapa form" "nao form" ". form";
+  }
+  .pedido-grade .il-mapa { margin-top: 24px; }
+  .pedido-grade .form-caixa { margin-top: 8px; box-shadow: 0 0 0 6px var(--ambar-fundo); align-self: start; }
   .lei-topo .intro { margin-top: 0; }
 }
 /* Sticky só se a coluna cabe na tela: em janela baixa ela prenderia o texto. */

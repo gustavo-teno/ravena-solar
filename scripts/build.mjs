@@ -2,7 +2,7 @@
 // shared/validacao.js) e embute o CSS no HTML para a página não piscar sem estilo.
 import { mkdirSync, readFileSync, writeFileSync, copyFileSync, rmSync, existsSync } from 'node:fs';
 import { cssDeTokens, tokens } from './tokens.mjs';
-import { CIDADES, FAIXAS_CONTA, estimarConta } from '../shared/validacao.js';
+import { CIDADES, FAIXAS_CONTA, estimarConta, faixaDoValor } from '../shared/validacao.js';
 import { htmlDaSimulacao, AVISO_ABAIXO_DO_MINIMO } from '../shared/simulacao.js';
 
 const raiz = new URL('../', import.meta.url);
@@ -33,6 +33,7 @@ function montar(arquivo) {
     .replace('<!--SIMULACAO-->', simulacao)
     .replace('%AVISO_CONTA%', AVISO_ABAIXO_DO_MINIMO)
     .replaceAll('%CONTA_EXEMPLO%', String(CONTA_DO_EXEMPLO))
+    .replaceAll('%FAIXA_CASO%', faixaDoValor(CONTA_DO_EXEMPLO).id)
     .replace('<!--CIDADES-->', opcoes(CIDADES))
     .replace('<!--FAIXAS-->', opcoes(FAIXAS_CONTA))
     .replaceAll('%AZUL%', tokens.azul)
