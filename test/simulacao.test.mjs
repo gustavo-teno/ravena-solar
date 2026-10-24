@@ -8,15 +8,27 @@ import { htmlDaSimulacao, AVISO_ABAIXO_DO_MINIMO } from '../shared/simulacao.js'
 // O formatador usa espaço sem quebra entre "R$" e o número.
 const html = (valor, opcoes) => htmlDaSimulacao(estimarConta(valor), opcoes).replace(/ /g, ' ');
 
-test('exemplo do caso real: rótulo, faixa de R$ 78 a R$ 195 e larguras 10% e 25%', () => {
+test('exemplo do caso real: rótulo, faixa de R$ 78 a R$ 195 e larguras em escala fixa de R$ 1.500', () => {
   const saida = html(780, { exemplo: true });
   assert.ok(saida.includes('Exemplo'));
   assert.ok(saida.includes('R$ 78'));
   assert.ok(saida.includes('R$ 195'));
-  assert.ok(saida.includes('--inicio:10%'));
-  assert.ok(saida.includes('--fim:25%'));
-  assert.ok(saida.includes('--largura:100%'));
+  assert.ok(saida.includes('--largura:52%'));
+  assert.ok(saida.includes('--piso:5.2%'));
+  assert.ok(saida.includes('--teto:13%'));
   assert.match(saida, /role="img" aria-label="Conta de R\$ 780 hoje; com o sistema, entre R\$ 78 e R\$ 195 pela média dos clientes"/);
+});
+
+test('as barras acompanham a conta digitada: conta maior, barra de hoje maior', () => {
+  const largura = (valor) => Number(html(valor).match(/--largura:([\d.]+)%/)[1]);
+  const teto = (valor) => Number(html(valor).match(/--teto:([\d.]+)%/)[1]);
+  assert.ok(largura(450) < largura(780) && largura(780) < largura(1200));
+  assert.ok(teto(450) < teto(780) && teto(780) < teto(1200));
+  assert.equal(largura(1500), 100);
+  for (const valor of [450, 780, 1200, 5000]) assert.ok(teto(valor) < largura(valor), String(valor));
+  // acima da escala fixa a conta continua cabendo na barra
+  assert.equal(largura(5000), 100);
+  assert.equal(teto(5000), 25);
 });
 
 test('conta da própria pessoa: rótulo "Sua conta hoje", sem "Exemplo"', () => {

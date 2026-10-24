@@ -23,7 +23,7 @@
   <defs>
     <symbol id="il-sol" viewBox="0 0 100 100">
       <circle class="il-ambar" cx="50" cy="52" r="20"/>
-      <path d="M50 26 V17 M68.4 33.6 L74.8 27.2 M31.6 33.6 L25.2 27.2 M76 52 H85 M24 52 H15"/>
+      <path transform="translate(50 52)" d="M0 -28 L0 -40 M24.2 -14 L34.6 -20 M24.2 14 L34.6 20 M0 28 L0 40 M-24.2 14 L-34.6 20 M-24.2 -14 L-34.6 -20"/>
     </symbol>
     <symbol id="il-estrela" viewBox="0 0 24 24">
       <path d="M12 2 L14.59 9.44 L22.46 9.6 L16.18 14.36 L18.47 21.9 L12 17.4 L5.53 21.9 L7.82 14.36 L1.54 9.6 L9.41 9.44 Z"/>
@@ -49,7 +49,15 @@
 <header class="topo">
   <div class="cx">
     <a href="/" aria-label="Ravena Solar, início"><img src="/logo.svg" alt="Ravena Solar" width="150" height="40"></a>
-    <a class="botao botao--pequeno" href="#pedido">Pedir simulação</a>
+    <nav class="topo-nav" aria-label="Seções da página">
+      <a href="#caso">Caso real</a>
+      <a href="#lei">A lei</a>
+      <a href="#garantias">Garantias</a>
+      <a href="#como">Como funciona</a>
+      <a href="#investimento">Custo</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="botao botao--topo" href="#pedido">Pedir simulação</a>
   </div>
 </header>
 
@@ -62,7 +70,10 @@
         <h1 id="titulo-hero"><span class="tom-suave">Energia solar instalada</span> pela nossa equipe, sem terceirizar.</h1>
         <p class="sub">Na média dos nossos clientes, a conta de luz cai de <strong class="num">75% a 90%</strong>, e o investimento tem voltado em <strong class="num">3 a 4 anos</strong>.</p>
         <svg class="il il-hero" viewBox="0 0 480 300" aria-hidden="true" focusable="false">
-          <use href="#il-sol" x="320" y="40" width="100" height="100"/>
+          <g transform="translate(370 92)">
+            <circle class="il-ambar" r="20"/>
+            <g class="sol-raios"><path d="M0 -28 L0 -40 M24.2 -14 L34.6 -20 M24.2 14 L34.6 20 M0 28 L0 40 M-24.2 14 L-34.6 20 M-24.2 -14 L-34.6 -20"/></g>
+          </g>
           <path d="M24 270 H456"/>
           <rect class="il-branco" x="100" y="170" width="240" height="100"/>
           <path class="il-claro" d="M80 175 L220 70 L360 175 Z"/>
@@ -77,8 +88,8 @@
       <div class="hero-lado">
       <div class="sim" id="simulador">
         <h2>Quanto você paga de luz por mês?</h2>
-        <p class="corte">Para contas acima de <span class="num">R$&nbsp;450</span> por mês.</p>
-        <label for="sim-valor">Valor médio da sua conta</label>
+        <p class="corte">Atendemos contas a partir de <span class="num">R$&nbsp;450</span>.</p>
+        <label class="so-leitor" for="sim-valor">Valor médio da sua conta de luz, em reais</label>
         <div class="sim-campo">
           <span aria-hidden="true">R$</span>
           <input id="sim-valor" inputmode="decimal" autocomplete="off" value="%CONTA_EXEMPLO%" placeholder="%CONTA_EXEMPLO%" aria-describedby="sim-saida">
@@ -99,6 +110,7 @@
         <li><strong class="num">6 anos</strong><span>de empresa, sede em Sorocaba</span></li>
         <li>
           <strong class="num">4,8</strong>
+          <span>no Google, com <span class="num">137</span> avaliações</span>
           <svg class="il estrelas" viewBox="0 0 128 24" role="img" aria-label="Nota 4,8 de 5 no Google" focusable="false">
             <defs>
               <clipPath id="il-corte-nota"><rect x="104" y="0" width="18.3" height="24"/></clipPath>
@@ -112,7 +124,6 @@
               <use class="il-estrela-cheia" href="#il-estrela" x="104" y="0" width="24" height="24"/>
             </g>
           </svg>
-          <span>no Google, com <span class="num">137</span> avaliações</span>
         </li>
         <li><strong class="num">11 pessoas</strong><span>equipe própria, com carteira assinada</span></li>
       </ul>
@@ -125,7 +136,7 @@
       <p class="rotulo">Um caso, com números conferidos</p>
       <h2 id="titulo-caso">Casa em Sorocaba: de R$&nbsp;780 para R$&nbsp;118 por mês.</h2>
       <div class="caso-grade">
-        <div>
+        <div class="caso-conta">
           <div class="conta-barras" role="img" aria-label="Conta de luz por mês: R$&nbsp;780 antes, R$&nbsp;118 de média nos últimos doze meses depois do sistema.">
             <div>
               <div class="barra-info"><span>Antes do sistema</span><b class="num">R$&nbsp;780</b></div>
@@ -136,17 +147,18 @@
               <div class="barra barra--depois" style="--largura:15.1%"></div>
             </div>
           </div>
-          <dl class="caso-dados caso-dados--abaixo">
+          <dl class="caso-dados">
             <div><dt>Sistema</dt><dd class="num">6,4 kWp</dd></div>
             <div><dt>Instalado em</dt><dd>março de <span class="num">2025</span></dd></div>
             <div><dt>Queda neste caso</dt><dd class="num">85%</dd></div>
           </dl>
         </div>
         <div class="caso-nota">
-          <p>É um caso real. Na média dos nossos clientes, a queda fica entre <span class="num">75% e 90%</span>. Quem dimensiona o seu sistema é a visita técnica.</p>
+          <h3>É um caso real.</h3>
+          <p>Na média dos nossos clientes, a queda fica entre <span class="num">75% e 90%</span>. Quem dimensiona o seu sistema é a visita técnica.</p>
+          <a class="botao botao--cheio" href="#pedido" data-faixa="%FAIXA_CASO%">Pedir simulação</a>
         </div>
       </div>
-      <a class="botao botao--fim" href="#pedido" data-faixa="%FAIXA_CASO%">Pedir simulação</a>
     </div>
   </section>
 
@@ -218,10 +230,13 @@
   <!-- 5. Telhado e garantias -->
   <section class="secao fundo-ambar" id="garantias" aria-labelledby="titulo-garantias">
     <div class="cx">
-      <p class="rotulo">Telhado e garantias</p>
-      <h2 id="titulo-garantias">E se chover?</h2>
+      <div class="garantia-topo">
+        <div class="garantia-texto">
+          <p class="rotulo">Telhado e garantias</p>
+          <h2 id="titulo-garantias">E se chover?</h2>
       <p class="intro">O medo de infiltração é o segundo que mais ouvimos, principalmente em telha de barro. A instalação leva <span class="num">2 dias</span>, feita pela nossa equipe, e a garantia da instalação cobre o que a obra causar.</p>
-      <div class="chuva chuva--il">
+        </div>
+        <div class="chuva">
         <svg class="il il-telha" viewBox="0 0 400 264" aria-hidden="true" focusable="false">
           <rect class="il-branco" x="2" y="2" width="396" height="260" rx="12"/>
       <rect class="il-fundo" x="26" y="22" width="58" height="55"/>
@@ -281,18 +296,19 @@
           <text class="il-txt-branco il-t-gr" x="200" y="136" text-anchor="middle"><tspan class="il-txt-ambar il-t-xg">5</tspan> anos</text>
           <text class="il-txt-branco il-sub" x="200" y="168" text-anchor="middle">instalação</text>
         </svg>
-        <div class="grande num so-leitor">5 anos</div>
-        <div>
-          <h3>Garantia da nossa instalação</h3>
-          <p>Inclui qualquer infiltração causada pela obra.</p>
+          <div class="grande num so-leitor">5 anos</div>
+          <div class="chuva-texto">
+            <h3>Garantia da nossa instalação</h3>
+            <p>Inclui qualquer infiltração causada pela obra.</p>
+          </div>
         </div>
       </div>
       <ul class="garantias">
         <li><b class="num">25 anos</b><span>de performance do painel</span></li>
         <li><b class="num">10 anos</b><span>de garantia do inversor</span></li>
+        <li><b>Assistência técnica</b><span>autorizada da marca do inversor que instalamos</span></li>
       </ul>
-      <p class="garantias-nota">Somos assistência técnica autorizada da marca do inversor que instalamos.</p>
-      <a class="botao botao--fim" href="#pedido">Pedir simulação</a>
+      <div class="cta-centro"><a class="botao" href="#pedido">Pedir simulação</a></div>
     </div>
   </section>
 
@@ -304,39 +320,41 @@
         <li>
           <h3>Simulação e visita</h3>
           <ul class="fase-passos">
-            <li><strong>Simulação por WhatsApp:</strong> resposta no mesmo dia útil.</li>
-            <li><strong>Visita técnica com medição do telhado:</strong> gratuita e sem compromisso.</li>
+            <li><strong>Simulação por WhatsApp</strong><span>Resposta no mesmo dia útil.</span></li>
+            <li><strong>Visita técnica com medição do telhado</strong><span>Gratuita e sem compromisso.</span></li>
           </ul>
         </li>
         <li>
           <h3>Proposta e assinatura</h3>
           <ul class="fase-passos">
-            <li><strong>Proposta com três tamanhos de sistema:</strong> você compara e escolhe.</li>
-            <li><strong>Assinatura:</strong> aqui começa a contar o prazo.</li>
+            <li><strong>Proposta com três tamanhos de sistema</strong><span>Você compara e escolhe.</span></li>
+            <li><strong>Assinatura</strong><span>Aqui começa a contar o prazo.</span></li>
           </ul>
         </li>
         <li>
           <h3>Projeto e homologação na CPFL</h3>
           <ul class="fase-passos">
-            <li><strong>Projeto e homologação</strong> junto à distribuidora. <span class="etiqueta">Prazo da CPFL</span></li>
+            <li><strong>Projeto e homologação</strong><span>Junto à distribuidora.</span> <span class="etiqueta">Prazo da CPFL</span></li>
           </ul>
         </li>
         <li>
           <h3>Instalação e ligação</h3>
           <ul class="fase-passos">
-            <li><strong>Instalação em <span class="num">2 dias</span>,</strong> com equipe própria.</li>
-            <li><strong>Vistoria e ligação.</strong></li>
-            <li><strong>Acompanhamento da produção no primeiro ano:</strong> ligamos se cair fora do previsto.</li>
+            <li><strong>Instalação em <span class="num">2 dias</span></strong><span>Com equipe própria.</span></li>
+            <li><strong>Vistoria e ligação</strong></li>
+            <li><strong>Acompanhamento da produção no primeiro ano</strong><span>Ligamos se cair fora do previsto.</span></li>
           </ul>
         </li>
       </ol>
       <div class="regua" role="img" aria-label="45 a 60 dias da assinatura ao sistema ligado. A instalação leva 2 dias; o resto é projeto e homologação na distribuidora.">
-        <div class="regua-barra" aria-hidden="true">
-          <span class="regua-homologacao">Projeto e homologação na CPFL</span>
-          <span class="regua-obra"><span class="regua-obra-rotulo">Instalação: <span class="num">2 dias</span></span></span>
-        </div>
+        <p class="regua-titulo" aria-hidden="true"><strong class="num">45 a 60 dias</strong> da assinatura ao sistema ligado</p>
+        <div class="regua-dias" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="folga"></i><i class="obra"></i><i class="obra"></i></div>
         <div class="regua-marcos" aria-hidden="true"><span>Assinatura</span><span>Sistema ligado</span></div>
-        <p class="regua-legenda" aria-hidden="true"><strong class="num">45 a 60 dias</strong> da assinatura ao sistema ligado. A instalação leva <span class="num">2 dias</span>; o resto é projeto e homologação na distribuidora.</p>
+        <ul class="regua-legenda" aria-hidden="true">
+          <li><i class="obra"></i><span><strong>Instalação: <span class="num">2 dias</span></strong>, com equipe própria</span></li>
+          <li><i></i><span><strong>Projeto e homologação na CPFL:</strong> a parte que não depende de nós</span></li>
+          <li><i class="folga"></i><span>Margem do prazo, se a distribuidora demorar</span></li>
+        </ul>
       </div>
       <ul class="selos" aria-label="O que sustenta a nossa palavra">
         <li>
@@ -361,7 +379,7 @@
   </section>
 
   <!-- 7. Investimento e financiamento -->
-  <section class="secao" id="investimento" aria-labelledby="titulo-invest">
+  <section class="secao fundo-ambar" id="investimento" aria-labelledby="titulo-invest">
     <div class="cx">
       <p class="rotulo">Investimento e financiamento</p>
       <h2 id="titulo-invest">O que costuma custar.</h2>
@@ -416,17 +434,13 @@
   </section>
 
   <!-- 9. Pedido de simulação -->
-  <section class="secao fundo-claro" id="pedido" aria-labelledby="titulo-pedido">
+  <section class="secao fundo-azul" id="pedido" aria-labelledby="titulo-pedido">
     <div class="cx pedido-grade">
       <p class="rotulo">Pedir simulação</p>
       <h2 id="titulo-pedido">Resposta no mesmo dia útil, por WhatsApp.</h2>
       <div class="pedido-intro">
-        <p class="intro">A visita técnica ao telhado é gratuita e sem compromisso. Atendemos casas num raio de <span class="num">80 km</span> de Sorocaba:</p>
-        <ul class="cidades" aria-label="Cidades atendidas">
-          <li>Sorocaba</li><li>Votorantim</li><li>Itu</li><li>Salto</li>
-        </ul>
+        <p class="intro">A visita técnica ao telhado é gratuita e sem compromisso. Atendemos num raio de <span class="num">80 km</span> de Sorocaba.</p>
       </div>
-      <p class="nao-atendemos"><strong>Para quem é:</strong> casas com conta acima de <span class="num">R$&nbsp;450</span> por mês, em Sorocaba e região. <strong>Fora do que fazemos:</strong> indústria, comércio acima de <span class="num">75 kWp</span>, sistema com bateria e manutenção de sistema instalado por outra empresa.</p>
 
       <div class="form-caixa">
         <form id="form-pedido" action="/api/pedido" method="post" enctype="multipart/form-data">
@@ -458,13 +472,12 @@
           <div class="campo">
             <label for="anexo">Foto ou PDF da conta de luz <span class="dica">(opcional)</span></label>
             <input id="anexo" name="anexo" type="file" accept="image/*,application/pdf" aria-describedby="dica-anexo">
-            <p class="nota-form" id="dica-anexo">Ajuda a acelerar a simulação, mas você pode enviar sem. Até 4 MB.</p>
+            <p class="nota-form" id="dica-anexo">Acelera a simulação. Até 4 MB.</p>
           </div>
           <div class="armadilha" aria-hidden="true"><label>Deixe em branco <input name="site" tabindex="-1" autocomplete="off"></label></div>
-          <p class="caso-linha">Um caso conferido: casa em Sorocaba, de <span class="num">R$&nbsp;780</span> para <span class="num">R$&nbsp;118</span> por mês (média dos últimos doze meses). <a href="#caso">Ver o caso</a></p>
           <button class="botao botao--cheio" id="enviar" type="submit">Pedir simulação</button>
           <div class="erro-geral" id="erro-geral" role="alert" hidden></div>
-          <p class="nota-form">Usamos nome, WhatsApp, cidade e conta de luz só para responder ao seu pedido. <a href="/politica-de-privacidade.html">Política de privacidade</a>.</p>
+          <p class="nota-form">Usamos seus dados só para responder ao pedido. <a href="/politica-de-privacidade.html">Política de privacidade</a>.</p>
         </form>
         <div class="confirmacao" id="confirmacao" tabindex="-1" hidden>
           <h3>Pedido recebido.</h3>
@@ -472,25 +485,38 @@
         </div>
       </div>
       <svg class="il il-mapa" viewBox="0 0 560 400" role="img" aria-label="Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu."><title>Mapa esquemático: Sorocaba no centro de um círculo de 80 km de raio; Votorantim fica colada ao sul, Itu e Salto ao nordeste, com Salto um pouco além de Itu.</title>
-        <circle class="il-fundo il-tracejado" cx="280" cy="200" r="170"/>
-        <path d="M280 200 H110"/>
-        <text class="il-sub" x="195" y="186" text-anchor="middle">raio de 80 km</text>
-        <circle class="il-branco" cx="335" cy="142" r="8"/>
-        <text x="319" y="150" text-anchor="end">Itu</text>
-        <circle class="il-branco" cx="358" cy="104" r="8"/>
-        <text x="342" y="112" text-anchor="end">Salto</text>
-        <circle class="il-branco" cx="286" cy="228" r="8"/>
-        <text x="270" y="236" text-anchor="end">Votorantim</text>
-        <circle class="il-ambar" cx="280" cy="200" r="11"/>
-        <text x="298" y="208">Sorocaba</text>
+        <circle class="il-fundo il-tracejado il-orbita" cx="180" cy="200" r="150"/>
+        <path d="M180 200 L74 306"/>
+        <text class="il-sub" x="118" y="262" text-anchor="end">80 km</text>
+        <path class="il-guia" d="M260 108 H342 M236 144 H342 M180 200 H342 M186 226 L342 244"/>
+        <circle class="il-branco" cx="260" cy="108" r="7"/>
+        <circle class="il-branco" cx="236" cy="144" r="7"/>
+        <circle class="il-branco" cx="186" cy="226" r="7"/>
+        <circle class="il-pulso" cx="180" cy="200" r="10"/>
+        <circle class="il-ambar" cx="180" cy="200" r="10"/>
+        <text x="352" y="116">Salto</text>
+        <text x="352" y="152">Itu</text>
+        <text x="352" y="208">Sorocaba</text>
+        <text x="352" y="252">Votorantim</text>
       </svg>
+
+      <div class="pedido-limites">
+        <div>
+          <h3>Para quem é</h3>
+          <p>Casas com conta acima de <span class="num">R$&nbsp;450</span> por mês, em Sorocaba e região.</p>
+        </div>
+        <div>
+          <h3>Fora do que fazemos</h3>
+          <p>Indústria, comércio acima de <span class="num">75 kWp</span>, sistema com bateria e manutenção de sistema instalado por outra empresa.</p>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="rodape">
   <div class="cx">
-    <img src="/logo.svg" alt="Ravena Solar" width="120" height="32">
+    <img src="/logo-claro.svg" alt="Ravena Solar" width="120" height="32">
     <div class="rodape-cols">
       <div>
         <p><strong>Ravena Solar</strong> · integradora de energia solar residencial · sede em Sorocaba, SP</p>

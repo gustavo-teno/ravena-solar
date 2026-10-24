@@ -49,6 +49,14 @@ copyFileSync(new URL('src/app.js', raiz), new URL('public/app.js', raiz));
 copyFileSync(new URL('shared/validacao.js', raiz), new URL('public/validacao.js', raiz));
 copyFileSync(new URL('shared/simulacao.js', raiz), new URL('public/simulacao.js', raiz));
 copyFileSync(new URL('logo.svg', raiz), new URL('public/logo.svg', raiz));
+// Logo para fundo escuro: o que era azul (painel, "RAVENA") fica branco e a grade branca do painel passa a azul.
+gravar(
+  'logo-claro.svg',
+  ler('logo.svg')
+    .replaceAll(`stroke="${tokens.branco}"`, 'stroke="@AZUL@"')
+    .replaceAll(`fill="${tokens.azul}"`, `fill="${tokens.branco}"`)
+    .replaceAll('@AZUL@', tokens.azul),
+);
 // Fonte dos títulos: só o subconjunto latino, só o eixo wght (o pacote inteiro não vai para public/).
 mkdirSync(new URL('public/fonts/', raiz), { recursive: true });
 copyFileSync(new URL('node_modules/@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2', raiz), new URL('public/fonts/archivo-latin-wght.woff2', raiz));

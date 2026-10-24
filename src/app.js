@@ -24,7 +24,6 @@ function mostrarSimulacao() {
   const estimativa = texto ? estimarConta(lerValorEmReais(texto)) : null;
   saidaSim.innerHTML = htmlDaSimulacao(estimativa);
   continuar.hidden = !estimativa?.atende;
-  continuar.textContent = 'Pedir simulação com essa conta';
   if (estimativa?.atende) continuar.dataset.faixa = estimativa.faixa;
   else delete continuar.dataset.faixa;
 }

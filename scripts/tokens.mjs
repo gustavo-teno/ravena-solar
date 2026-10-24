@@ -17,6 +17,7 @@ export const marca = {
 };
 
 const BRANCO = '#FFFFFF';
+const PRETO = '#000000';
 
 function paraRgb(hex) {
   const n = parseInt(hex.slice(1), 16);
@@ -40,6 +41,7 @@ export const tokens = {
   laranja: marca.laranja,
   branco: BRANCO,
   papel: misturar(marca.azul, BRANCO, 0.04),
+  'azul-escuro': misturar(marca.azul, PRETO, 0.78),
   'azul-claro': misturar(marca.azul, BRANCO, 0.09),
   linha: misturar(marca.azul, BRANCO, 0.18),
   suave: misturar(marca.azul, BRANCO, 0.8),

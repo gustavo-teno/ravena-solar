@@ -5,8 +5,10 @@ import { VALOR_MINIMO_CONTA } from './validacao.js';
 
 const reais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
 
-// Largura como parte da conta de hoje, arredondada em uma casa decimal.
-const pct = (parte, total) => `${Math.round((parte / total) * 1000) / 10}%`;
+// As barras usam uma escala em reais, a mesma para as duas: assim a de hoje cresce com a conta
+// digitada e a de depois fica sempre menor. Acima de ESCALA_BARRAS a escala acompanha a conta.
+const ESCALA_BARRAS = 1500;
+const pct = (valor, escala) => `${Math.round((valor / escala) * 1000) / 10}%`;
 
 // Mesma frase no simulador e no aviso do formulário (o build a põe no HTML).
 export const AVISO_ABAIXO_DO_MINIMO = `Abaixo de ${reais.format(VALOR_MINIMO_CONTA)} por mês a conta não fecha, e nós mesmos desaconselhamos a instalação.`;
@@ -27,20 +29,21 @@ export function htmlDaSimulacao(estimativa, { exemplo = false } = {}) {
   }
 
   const { conta, de, ate } = estimativa;
-  const rotulo = exemplo ? 'Exemplo: a conta do nosso caso em Sorocaba' : 'Sua conta hoje';
+  const escala = Math.max(conta, ESCALA_BARRAS);
+  const selo = exemplo ? '<p class="selo">Exemplo: a conta do nosso caso em Sorocaba</p>' : '';
+  const hoje = exemplo ? 'Conta de hoje' : 'Sua conta hoje';
   const descricao = `Conta de ${reais.format(conta)} hoje; com o sistema, entre ${reais.format(de)} e ${reais.format(ate)} pela média dos clientes`;
   return `
-    <div class="linha"><span>${rotulo}</span><span class="valor num">${reais.format(conta)}</span></div>
-    <div class="linha"><span>Estimativa com o sistema</span><span class="valor num">${reais.format(de)} a ${reais.format(ate)}</span></div>
+    ${selo}
     <div class="conta-barras" role="img" aria-label="${descricao}">
-      <div>
-        <div class="barra-info"><span>Hoje</span></div>
-        <div class="barra" style="--largura:${pct(conta, conta)}"></div>
+      <div class="comparo">
+        <div class="comparo-topo"><span>${hoje}</span><b class="num">${reais.format(conta)}</b></div>
+        <div class="trilho trilho-hoje" style="--largura:${pct(conta, escala)}"></div>
       </div>
-      <div>
-        <div class="barra-info"><span>Com o sistema, pela média</span></div>
-        <div class="barra-faixa"><div class="barra-seg" style="--inicio:${pct(de, conta)};--fim:${pct(ate, conta)}"></div></div>
+      <div class="comparo">
+        <div class="comparo-topo"><span>Com o sistema, pela média</span><b class="num">${reais.format(de)} a ${reais.format(ate)}</b></div>
+        <div class="trilho trilho-depois" style="--piso:${pct(de, escala)};--teto:${pct(ate, escala)}"></div>
       </div>
     </div>
-    <p class="nota">Estimativa pela média dos nossos clientes, que veem a conta cair de 75% a 90%. A conta não zera: sobra a taxa mínima e o custo do fio. Quem dimensiona o seu caso é a visita técnica.</p>`;
+    <p class="nota">Pela média dos nossos clientes. A conta não zera: sobra a taxa mínima e o custo do fio.</p>`;
 }
