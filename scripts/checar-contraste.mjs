@@ -25,6 +25,8 @@ const PARES = [
   ['barra "depois" âmbar sobre azul', 'ambar', 'azul', G],
   ['barra "antes" sobre azul', 'sobre-azul', 'azul', G],
   ['texto sobre azul claro (hover)', 'azul', 'azul-claro', T],
+  ['texto sobre azul claro (pedido)', 'azul', 'azul-claro', T],
+  ['texto suave sobre azul claro (pedido)', 'suave', 'azul-claro', T],
   ['bolinha da lista (âmbar) com borda azul', 'azul', 'papel', G],
   ['ilustração: traço azul sobre o papel', 'azul', 'papel', G],
   ['ilustração: traço azul sobre branco (telha, casa, mapa)', 'azul', 'branco', G],

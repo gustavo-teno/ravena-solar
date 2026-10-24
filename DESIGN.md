@@ -35,7 +35,9 @@ Base de 8 px. Contêiner de 1120 px com margem lateral de 16 px no celular. Seç
 
 ## Ritmo da página
 
-Fundo claro (hero, lei, garantias, como funciona, investimento, FAQ, pedido) e **um** bloco azul escuro, o caso real, para dar peso ao único antes/depois conferido. A prova rápida fica numa faixa branca logo abaixo do hero.
+O fundo alterna a cada seção: hero (`--papel`) → prova (`.fundo-branco`) → caso (`.fundo-azul`) → lei (papel) → garantias (`.fundo-ambar`, com o bloco `.chuva` azul por cima) → como funciona (`.fundo-branco`) → investimento (papel) → dúvidas (`.fundo-branco`) → pedido (`.fundo-claro`, com a `.form-caixa` em branco).
+
+Por quê: a página parecia um só bloco, separada apenas por uma linha fina, e na miniatura da página inteira não se via onde uma seção terminava e a outra começava. Onde o fundo muda, não há mais `border-top`. O azul escuro continua reservado ao caso real, o único antes/depois conferido; o âmbar claro e o azul claro são tons já existentes, sem cor nova.
 
 ## Componentes
 
@@ -46,6 +48,8 @@ Fundo claro (hero, lei, garantias, como funciona, investimento, FAQ, pedido) e *
 - **Linha do caso no formulário:** uma frase junto ao botão de envio ("Um caso conferido…") com link para o caso; não repete as barras.
 - **Caso real:** duas barras proporcionais (780 → 118, largura calculada da razão) sobre fundo azul, com a nota "Não é zero" e "É um caso, não uma média".
 - **Garantias:** "E se chover?" em destaque (5 anos), as garantias de fabricante em lista de uma linha.
+- **Duas colunas (`.duas-col`):** usada em Como funciona e Dúvidas. A partir de 960 px, 38% / 62%, com a coluna esquerda (título e prazo, ou título e a linha "Não achou a sua?") em `position: sticky; top: 88px`, o mesmo valor do `.hero-lado`; a direita traz a lista (passos ou FAQ), na mesma altura de início. Abaixo de 960 px é uma coluna. O sticky só liga em janela com 560 px de altura ou mais, para não prender a coluna numa tela baixa. Só CSS, sem JavaScript.
+- **Cabeçalho da lei (`.lei-topo`):** a partir de 960 px, rótulo e título à esquerda e o parágrafo de introdução à direita, na mesma linha; esquema e cartões seguem embaixo, na largura total.
 - **Passos:** lista numerada com linha vertical; o passo da CPFL leva a etiqueta "Depende da distribuidora, não de nós".
 - **FAQ:** `<details>`, funciona sem JavaScript.
 - **Ilustrações:** quatro desenhos da mesma família, todos SVG inline (nunca `<img>` nem .svg externo, para o `checar-cores` varrer). Traço de `--traco: 3px` (com `vector-effect: non-scaling-stroke`, então são 3 px em qualquer largura), cantos e pontas redondos, sem gradiente, sombra nem animação. Cores só por classe (`.il-azul`, `.il-ambar`, `.il-branco`, `.il-claro`, `.il-laranja`, `.il-fundo`) com os tokens `--azul`, `--ambar`, `--branco`, `--azul-claro`, `--laranja` e `--ambar-fundo`. Símbolos compartilhados (sol, casa, casa à noite, rede) ficam num bloco `<defs>` no topo da página.

@@ -58,7 +58,9 @@ ul, ol { padding: 0; list-style: none; }
 
 /* ---------- Seções ---------- */
 .secao { padding: clamp(48px, 8vw, 96px) 0; }
-.secao--linha { border-top: 1px solid var(--linha); }
+.fundo-branco { background: var(--branco); }
+.fundo-ambar { background: var(--ambar-fundo); }
+.fundo-claro { background: var(--azul-claro); }
 .fundo-azul { background: var(--azul); color: var(--branco); }
 .fundo-azul :is(.suave) { color: var(--sobre-azul); }
 
@@ -142,6 +144,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .garantias { display: grid; gap: 12px; margin-top: 16px; }
 .garantias li { display: flex; align-items: baseline; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--linha); }
 .garantias b { min-width: 6.5ch; font-size: 1.75rem; font-weight: 800; }
+.garantias-nota { margin-top: 20px; }
 
 /* ---------- Passos ---------- */
 .passos { counter-reset: passo; margin-top: 32px; display: grid; gap: 0; }
@@ -165,6 +168,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 
 /* ---------- Investimento ---------- */
 .invest-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 32px; }
+.intro--junto { margin-top: 12px; }
 .preco { font-size: clamp(2rem, 7vw, 3.25rem); font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
 .lista-ponto li { position: relative; padding: 10px 0 10px 24px; border-bottom: 1px solid var(--linha); }
 .lista-ponto li::before { content: ""; position: absolute; left: 0; top: 1.15em; width: 10px; height: 10px; border-radius: 50%; background: var(--ambar); border: 2px solid var(--azul); }
@@ -256,6 +260,13 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .il-mapa text { font-size: 24px; }
 .il-mapa text.il-sub { font-size: 22px; }
 
+/* Duas colunas (Como funciona, Dúvidas): título fixo à esquerda, lista à direita. */
+.duas-col { display: grid; gap: 32px; }
+.duas-col .passos, .duas-col .faq { margin-top: 0; }
+.duas-col .prazo { margin-top: 24px; }
+.duas-col h2 { margin-top: 0; }
+.lei-topo { display: grid; gap: 0; }
+
 /* ---------- Telas maiores ---------- */
 @media (min-width: 760px) {
   .cartoes--3 { grid-template-columns: repeat(3, 1fr); }
@@ -289,6 +300,13 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
   .sim { padding: 28px; }
   .hero-lado { position: sticky; top: 88px; }
   .il-hero { width: 100%; height: auto; max-height: 240px; }
+  .duas-col { grid-template-columns: minmax(0, .38fr) minmax(0, .62fr); gap: 64px; align-items: start; }
+  .lei-topo { grid-template-columns: minmax(0, .5fr) minmax(0, .5fr); gap: 64px; align-items: end; }
+  .lei-topo .intro { margin-top: 0; }
+}
+/* Sticky só se a coluna cabe na tela: em janela baixa ela prenderia o texto. */
+@media (min-width: 960px) and (min-height: 560px) {
+  .duas-col > :first-child { position: sticky; top: 88px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
