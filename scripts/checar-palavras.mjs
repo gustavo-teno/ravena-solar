@@ -14,6 +14,7 @@ const PROIBIDAS = [
   [/(?<!n[aã]o )\bzera\b/i, '"zera" sem negação'],
   [/garantid[oa]\b(?! de)/i, '"garantido/a" (promessa solta)'],
   [/\bm[aá]ximo\b|\bmelhor do mercado\b|\bl[ií]der\b/i, 'superlativo não verificável'],
+  [/confirma[cç][aã]o do cliente|pendentes? de confirma|TODO|lorem ipsum|XXX/i, 'nota interna publicada (andaime)'],
 ];
 
 let falhas = 0;

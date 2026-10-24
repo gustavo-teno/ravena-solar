@@ -45,7 +45,14 @@ Escala fluida com `clamp()`: título do hero 2,125–2,5 rem (`clamp(2.125rem, 6
 
 ## Espaço e forma
 
-Base de 8 px. Contêiner de 1120 px com margem lateral de 16 px no celular. Seções com respiro vertical `clamp(48px, 8vw, 96px)`. Raios de 10–14 px; cartões com borda de 1 px (`--linha`), caixas de ação com borda de 2 px (`--azul`). Alvos de toque de 44–48 px.
+Base de 8 px. Contêiner de 1120 px com margem lateral de 16 px no celular. Seções com respiro vertical `clamp(48px, 8vw, 96px)`. Alvos de toque de 44–48 px. Raios e bordas: ver "Acabamento".
+
+### Acabamento
+
+- **Três raios, em `:root`:** `--raio` (10 px: botão, campo, atalhos, aviso, erro, foco, chips das cidades), `--raio-bloco` (14 px: `.sim`, `.form-caixa`, `.cartao`, `.chuva`, `.prazo`, `.caso-nota`, `.confirmacao`) e `--raio-pilula` (999 px: `.etiqueta`). Ficam de fora o círculo (50%) e `--raio-barra` (6 px, as barras do caso e do simulador).
+- **Um recurso por separação.** Bloco branco sobre fundo colorido (papel, âmbar claro, azul claro) se separa pelo fundo e pelo espaço, sem borda: `.cartao`, `.prazo`, `.form-caixa`, `.confirmacao`, `.caso-nota` (azul claro sobre o azul do caso) e `.cidades li` (branco). Quando o bloco cairia em fundo branco, o fundo dele vira `--papel` (`.cartao` e `.prazo` em seção branca). O simulador e o formulário levam o mesmo anel `box-shadow: 0 0 0 6px var(--ambar-fundo)`, para serem lidos como o mesmo tipo de coisa. A `.confirmacao` mantém só a faixa da esquerda (6 px, `--azul`) como sinal de status.
+- **Bordas que ficam por contraste (WCAG 1.4.11):** campos (`.campo input/select`, `.sim-campo`, input de arquivo), botões (`.botao`, `.sim-atalhos button`; âmbar sobre branco não chega a 3:1) e o foco. Avisos e erro mantêm a faixa ou borda de cor que carrega o significado.
+- **Chevron do FAQ:** `::after` de 10 px com `border-right` e `border-bottom` de 2 px em `currentColor`, `rotate: 45deg`; aberto, `-135deg`. Rotação de 150 ms, desligada com `prefers-reduced-motion`.
 
 ## Ritmo da página
 
@@ -69,7 +76,8 @@ Por quê: a página parecia um só bloco, separada apenas por uma linha fina, e 
 - **Pedido em duas colunas (`.pedido-grade`):** a partir de 960 px, à esquerda rótulo, título, introdução com cidades, mapa (até 360 px) e a linha "Para quem é"; à direita a `.form-caixa`, na altura do título, com `box-shadow: 0 0 0 6px var(--ambar-fundo)` (só ela, só token). A ordem do DOM é a do celular: rótulo, título, introdução, "Para quem é", formulário e, por último, o mapa, de modo que no celular o formulário vem antes do mapa e a linha de quem não atendemos fica logo antes dele (SPEC §3.10); no desktop `grid-template-areas` reposiciona sem mexer no DOM. Dentro do formulário: conta e cidade na primeira linha, o aviso da conta na largura toda logo abaixo, nome e WhatsApp na seguinte.
 - **Cabeçalho da lei (`.lei-topo`):** a partir de 960 px, rótulo e título à esquerda e o parágrafo de introdução à direita, na mesma linha; esquema e cartões seguem embaixo, na largura total.
 - **Passos:** lista numerada com linha vertical; o passo da CPFL leva a etiqueta "Depende da distribuidora, não de nós".
-- **FAQ:** `<details>`, funciona sem JavaScript.
+- **FAQ:** `<details>`, funciona sem JavaScript; ícone é o chevron de CSS (ver "Acabamento").
+- **Rodapé (`.rodape`):** logo; duas colunas a partir de 760 px (quem somos e onde atendemos | resposta por WhatsApp, assistência técnica e links para a política e para #pedido); embaixo, separadas por `--linha`, duas linhas pequenas: "CNPJ, endereço e telefone: a publicar." e "Projeto de estudo: a Ravena Solar é uma empresa fictícia." Tudo vem do brief, sem número novo; só tokens.
 - **Ilustrações:** quatro desenhos da mesma família, todos SVG inline (nunca `<img>` nem .svg externo, para o `checar-cores` varrer). Traço de `--traco: 3px` (com `vector-effect: non-scaling-stroke`, então são 3 px em qualquer largura), cantos e pontas redondos, sem gradiente, sombra nem animação. Cores só por classe (`.il-azul`, `.il-ambar`, `.il-branco`, `.il-claro`, `.il-laranja`, `.il-fundo`) com os tokens `--azul`, `--ambar`, `--branco`, `--azul-claro`, `--laranja` e `--ambar-fundo`. Símbolos compartilhados (sol, casa, casa à noite, rede) ficam num bloco `<defs>` no topo da página.
   1. Hero: casa de duas águas com painel em trapézio e grade do logo, e o sol. Decorativa (`aria-hidden`); 180 px de altura no celular, entre o texto e o simulador; no desktop fica na coluna do texto, abaixo do subtítulo, e preenche o espaço ao lado do simulador. A partir de 960 px, o hero cabe inteiro na primeira dobra: espaçamentos do hero e do simulador mais compactos, altura do desenho ligada à altura da janela (`100vh`, entre 120 e 340 px) e, nas barras, rótulo à esquerda e barra à direita. Conferido em 1366×620, 1518×700 e 1920×1000.
   2. Garantias: selo "5 anos" sobre telha capa e canal, dentro do bloco azul. Decorativo; o texto "5 anos" continua no HTML.

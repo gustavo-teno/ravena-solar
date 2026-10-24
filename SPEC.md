@@ -131,3 +131,4 @@ Decisões tomadas ao construir, e o porquê.
 3. "137 avaliações" quebrava em linha separada na prova rápida (regra `span { display: block }` pegava o `span` interno).
 4. "R$ 780" quebrava entre "R$" e o número nos títulos: trocado por espaço sem quebra.
 5. O primeiro hover do botão reprovou no contraste; a página mudou, não o mínimo.
+- **Rodapé com prova e sem andaime:** o rodapé passou a trazer o que o brief garante (sede, cidades e 80 km, resposta no mesmo dia útil, assistência autorizada), a pendência foi reescrita para o visitante ("CNPJ, endereço e telefone: a publicar") e há a linha "Projeto de estudo". Entrou o check contra nota interna publicada (`checar-palavras`: "pendente de confirmação", TODO, lorem ipsum, XXX). Acabamento: três raios e um recurso por separação (DESIGN.md).

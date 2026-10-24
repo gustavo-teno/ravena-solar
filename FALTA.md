@@ -2,7 +2,7 @@
 
 ## Depende do cliente (nada disso pode ser inventado)
 
-- [ ] Razão social, CNPJ, endereço, telefone e WhatsApp reais (o rodapé diz "pendentes de confirmação").
+- [ ] Razão social, CNPJ, endereço, telefone e WhatsApp reais (o rodapé diz "CNPJ, endereço e telefone: a publicar"; continua pendente).
 - [ ] Prazo de guarda dos dados na política de privacidade: a página diz **12 meses** como proposta; confirmar.
 - [ ] Nome da marca de inversor (a página diz "a marca do inversor que instalamos").
 - [ ] Percentual vigente da cobrança da Lei 14.300: sem o dado verificado, a página explica o mecanismo sem número.
