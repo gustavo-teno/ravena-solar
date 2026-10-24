@@ -78,15 +78,15 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .hero { padding: clamp(32px, 6vw, 72px) 0 clamp(40px, 7vw, 80px); }
 .hero-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
 .hero h1 {
-  font-size: clamp(2.125rem, 6.4vw, 3.5rem); line-height: 1.08; font-weight: 800;
+  font-size: clamp(2.125rem, 6.4vw, 2.5rem); line-height: 1.08; font-weight: 800;
   letter-spacing: -.02em; margin-top: 12px; text-wrap: balance;
 }
 .hero .sub { margin-top: 20px; font-size: 1.1875rem; max-width: 52ch; }
-.hero .corte { margin-top: 16px; padding-left: 14px; border-left: 4px solid var(--ambar); max-width: 52ch; }
 
 /* ---------- Simulador ---------- */
 .sim { background: var(--branco); border: 2px solid var(--azul); border-radius: 14px; padding: 20px; }
 .sim h2 { font-size: 1.375rem; margin: 0; letter-spacing: 0; }
+.sim .corte { margin-top: 6px; font-size: .9375rem; color: var(--suave); }
 .sim label { display: block; margin-top: 16px; font-weight: 600; }
 .sim-campo { display: flex; align-items: center; margin-top: 8px; border: 2px solid var(--azul); border-radius: 10px; background: var(--branco); }
 .sim-campo span { padding-left: 14px; font-weight: 700; }

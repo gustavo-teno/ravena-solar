@@ -116,6 +116,7 @@ Decisões tomadas ao construir, e o porquê.
 - **"85%" no caso real:** derivado de 1 − 118/780, rotulado como "neste caso" e acompanhado de "é um caso, não uma média".
 - **Ilustrações próprias (hero, telha com selo, esquema da Lei 14.300, mapa de atendimento):** sem fotos, o visual sai do logo (sol de 5 raios, trapézio com grade); SVG inline, só tokens de cor, sem animação, sem texto além do que o brief diz. Detalhe em DESIGN.md.
 - **Política de privacidade:** guarda de 12 meses é proposta minha, a confirmar (ver `FALTA.md`).
+- **Hero com o diferencial no título:** o `<h1>` passou a trazer a equipe própria (instalação sem terceirizar), a resposta ao medo número um do brief, porque o título começava pela ressalva e soava como letra miúda. A promessa qualificada ("na média dos nossos clientes", 75% a 90%) foi para o subtítulo, na mesma frase do retorno de 3 a 4 anos. O corte de R$ 450 foi para dentro do simulador, onde o valor é digitado; o simulador segue no hero, como manda a §3, e o aviso abaixo de R$ 450 continua sendo o do `app.js`.
 
 ### Bugs que a verificação pegou
 
