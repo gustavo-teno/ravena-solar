@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { estimarConta } from '../shared/validacao.js';
-import { htmlDaSimulacao } from '../shared/simulacao.js';
+import { htmlDaSimulacao, AVISO_ABAIXO_DO_MINIMO } from '../shared/simulacao.js';
 
 // O formatador usa espaço sem quebra entre "R$" e o número.
 const html = (valor, opcoes) => htmlDaSimulacao(estimarConta(valor), opcoes).replace(/ /g, ' ');
@@ -27,7 +27,8 @@ test('conta da própria pessoa: rótulo "Sua conta hoje", sem "Exemplo"', () => 
 
 test('R$ 449: aviso de que a conta não fecha e nenhuma barra', () => {
   const saida = html(449);
-  assert.ok(saida.includes('Nesse valor a conta não fecha'));
+  assert.ok(saida.includes('Abaixo de R$ 450 por mês a conta não fecha'));
+  assert.ok(saida.includes('desaconselhamos'));
   assert.ok(!saida.includes('barra'));
   assert.ok(!saida.includes('role="img"'));
 });
@@ -54,4 +55,22 @@ test('o build põe o exemplo no HTML inicial, no lugar do marcador', () => {
   assert.ok(pagina.includes('value="780"'));
   assert.ok(pagina.includes('class="conta-barras"'));
   assert.ok(/id="sim-continuar" href="#pedido">/.test(pagina), 'o botão está visível, sem hidden');
+});
+
+test('a nota do exemplo diz a média dos clientes e que a conta não zera', () => {
+  const saida = html(780, { exemplo: true });
+  assert.ok(saida.includes('média dos nossos clientes'));
+  assert.ok(saida.includes('não zera'));
+});
+
+test('"não zera" aparece 2 vezes no texto visível sem JavaScript: nota do exemplo e cartão da Lei', async () => {
+  const { textoVisivel } = await import('../scripts/texto-visivel.mjs');
+  const pagina = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.equal(textoVisivel(pagina).match(/não zera/g).length, 2);
+});
+
+test('o aviso do formulário e o do simulador têm o mesmo texto', () => {
+  const pagina = readFileSync(new URL('../public/index.html', import.meta.url), 'utf8');
+  assert.ok(pagina.includes('>' + AVISO_ABAIXO_DO_MINIMO + '</p>'));
+  assert.ok(html(449).includes(AVISO_ABAIXO_DO_MINIMO.replace(/ /g, ' ')));
 });

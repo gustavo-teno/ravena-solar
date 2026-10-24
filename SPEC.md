@@ -73,7 +73,7 @@ Também fica fora do tom: tabela de preço por kWp, simulador que calcula potên
 
 ## 6. Voz
 
-Direta, técnica, com número. Frases curtas. Cada afirmação tem um dado do brief atrás. Assumimos o limite: a conta não zera, o prazo depende da CPFL, abaixo de R$ 450 não vale.
+Direta, técnica, com número. Frases curtas. Cada afirmação tem um dado do brief atrás. Assumimos o limite: a conta não zera, o prazo depende da CPFL, abaixo de R$ 450 não vale. Cada limite é dito uma vez onde a pessoa precisa dele; a explicação completa da conta que não zera fica no cartão da Lei 14.300.
 
 ## 7. Marca e design (resumo; detalhe no arquivo de design)
 
@@ -121,6 +121,7 @@ Decisões tomadas ao construir, e o porquê.
 - **Ritmo de fundo e duas colunas:** as seções passaram a alternar fundo (papel, branco, azul, âmbar claro, azul claro) em vez de linha fina, e Como funciona e Dúvidas ganharam duas colunas a partir de 960 px, sem mudar a ordem da §3; o azul escuro segue só no caso real. Detalhe em DESIGN.md.
 - **Simulador abre com o exemplo do caso real:** o resultado de R$ 780 é calculado no build pela mesma regra (`estimarConta`), rotulado como exemplo ("Exemplo: a conta do nosso caso em Sorocaba") e mostrado com barras, em `shared/simulacao.js`. Motivo: vazio, ele não mostrava o que fazia. R$ 78 e R$ 195 entram no `checar-numeros` como derivados desse cálculo (queda de 90% e de 75%). O comportamento abaixo de R$ 450 (§3) não mudou.
 - **Fonte própria nos títulos:** Archivo variável (OFL), só o eixo wght e o subconjunto latino, hospedada no site (orçamento de 50 KB; hoje 34,1 KB), com reserva de métrica ajustada; corpo segue na pilha de sistema. Título do hero em dois tons (uso único). Detalhe em DESIGN.md, "Tipografia".
+- **Cada limite dito uma vez:** a mesma ressalva (a conta não zera) aparecia até 4 vezes e o leitor terminava lembrando o que a Ravena não faz. Agora o "não zera" está só na nota do simulador (acima da dobra) e no cartão "O que sobra na conta" da Lei, que é a explicação completa; o aviso abaixo de R$ 450 tem uma só frase, a mesma no simulador e no formulário (`AVISO_ABAIXO_DO_MINIMO`); o bloco antes do formulário passou a abrir por "Para quem é". Nenhum limite saiu e nenhum número entrou.
 
 ### Bugs que a verificação pegou
 

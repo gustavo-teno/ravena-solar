@@ -3,7 +3,7 @@
 import { mkdirSync, readFileSync, writeFileSync, copyFileSync, rmSync, existsSync } from 'node:fs';
 import { cssDeTokens, tokens } from './tokens.mjs';
 import { CIDADES, FAIXAS_CONTA, estimarConta } from '../shared/validacao.js';
-import { htmlDaSimulacao } from '../shared/simulacao.js';
+import { htmlDaSimulacao, AVISO_ABAIXO_DO_MINIMO } from '../shared/simulacao.js';
 
 const raiz = new URL('../', import.meta.url);
 const ler = (caminho) => readFileSync(new URL(caminho, raiz), 'utf8');
@@ -31,6 +31,7 @@ function montar(arquivo) {
   return ler('src/' + arquivo)
     .replace('<!--CSS-->', `<style>${css}</style>`)
     .replace('<!--SIMULACAO-->', simulacao)
+    .replace('%AVISO_CONTA%', AVISO_ABAIXO_DO_MINIMO)
     .replaceAll('%CONTA_EXEMPLO%', String(CONTA_DO_EXEMPLO))
     .replace('<!--CIDADES-->', opcoes(CIDADES))
     .replace('<!--FAIXAS-->', opcoes(FAIXAS_CONTA))

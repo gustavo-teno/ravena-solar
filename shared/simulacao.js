@@ -8,6 +8,9 @@ const reais = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL
 // Largura como parte da conta de hoje, arredondada em uma casa decimal.
 const pct = (parte, total) => `${Math.round((parte / total) * 1000) / 10}%`;
 
+// Mesma frase no simulador e no aviso do formulário (o build a põe no HTML).
+export const AVISO_ABAIXO_DO_MINIMO = `Abaixo de ${reais.format(VALOR_MINIMO_CONTA)} por mês a conta não fecha, e nós mesmos desaconselhamos a instalação.`;
+
 /**
  * `estimativa` é o retorno de estimarConta; null/undefined quando o campo está vazio.
  * `exemplo: true` rotula a conta como a do caso real, para ninguém ler como a própria.
@@ -20,7 +23,7 @@ export function htmlDaSimulacao(estimativa, { exemplo = false } = {}) {
     return '<p class="aviso">Digite só o valor em reais, por exemplo 780 ou 780,00.</p>';
   }
   if (!estimativa.atende) {
-    return `<p class="aviso"><strong>Nesse valor a conta não fecha.</strong> Abaixo de ${reais.format(VALOR_MINIMO_CONTA)} por mês nós mesmos desaconselhamos a instalação.</p>`;
+    return `<p class="aviso">${AVISO_ABAIXO_DO_MINIMO}</p>`;
   }
 
   const { conta, de, ate } = estimativa;
@@ -39,5 +42,5 @@ export function htmlDaSimulacao(estimativa, { exemplo = false } = {}) {
         <div class="barra-faixa"><div class="barra-seg" style="--inicio:${pct(de, conta)};--fim:${pct(ate, conta)}"></div></div>
       </div>
     </div>
-    <p class="nota">Estimativa pela média dos nossos clientes, que veem a conta cair de 75% a 90%. Nunca chega a zero: sempre resta a taxa mínima e o custo do fio. Quem dimensiona o seu caso é a visita técnica.</p>`;
+    <p class="nota">Estimativa pela média dos nossos clientes, que veem a conta cair de 75% a 90%. A conta não zera: sobra a taxa mínima e o custo do fio. Quem dimensiona o seu caso é a visita técnica.</p>`;
 }
