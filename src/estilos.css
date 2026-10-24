@@ -258,8 +258,7 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
 .il text.il-t-gr { font-size: 32px; }
 .il tspan.il-t-xg { font-size: 56px; }
 
-.hero-lado { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-.il-hero { aspect-ratio: 480 / 300; height: 180px; width: auto; margin-inline: auto; }
+.il-hero { display: block; aspect-ratio: 480 / 300; height: 180px; width: auto; margin: 28px auto 0; }
 .il-lei { margin-top: 32px; }
 .il-lei--h { display: none; aspect-ratio: 960 / 250; }
 .il-lei--v { aspect-ratio: 360 / 500; max-width: 360px; }
@@ -309,14 +308,10 @@ h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; }
   .selos li:last-child { border-right: 0; }
   .sim { padding: 28px; }
   .hero-lado { position: sticky; top: 88px; }
-  .il-hero { width: 100%; height: auto; max-height: 240px; }
+  .il-hero { width: 100%; max-width: 560px; height: auto; margin: 48px 0 0; }
   .duas-col { grid-template-columns: minmax(0, .38fr) minmax(0, .62fr); gap: 64px; align-items: start; }
   .lei-topo { grid-template-columns: minmax(0, .5fr) minmax(0, .5fr); gap: 64px; align-items: end; }
   .lei-topo .intro { margin-top: 0; }
-}
-/* Em janela baixa, o simulador (campo, resultado, barras e botão) vale mais que o desenho acima dele. */
-@media (min-width: 960px) and (max-height: 999px) {
-  .il-hero { display: none; }
 }
 /* Sticky só se a coluna cabe na tela: em janela baixa ela prenderia o texto. */
 @media (min-width: 960px) and (min-height: 560px) {
